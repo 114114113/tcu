@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學生作品展示 | 慈濟大學 經營管理學系</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-navy: #0f2b48;
+            --primary-navy-dark: #0a1c30;
+            --accent-teal: #0d9488;
+            --accent-teal-hover: #0f766e;
+            --accent-gold: #d97706;
+            --bg-light: #f8fafc;
+            --bg-slate: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-light: #e2e8f0;
+            
+            --shadow-subtle: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-card: 0 10px 25px -5px rgba(15, 43, 72, 0.08);
+            --shadow-hover: 0 20px 30px -10px rgba(15, 43, 72, 0.15);
+            
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-full: 9999px;
+            
+            --transition-fast: all 0.2s ease;
+            --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; transition: var(--transition-fast); }
+        ul { list-style: none; }
+        img, video { max-width: 100%; height: auto; display: block; }
+
+        .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+        .section { padding: 5rem 0; position: relative; }
+
+        .section-header { text-align: center; max-width: 780px; margin: 0 auto 3rem auto; }
+        .badge-pill {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.35rem 1rem; border-radius: var(--radius-full);
+            background-color: rgba(13, 148, 136, 0.1); color: var(--accent-teal);
+            font-size: 0.85rem; font-weight: 700; letter-spacing: 1px;
+            margin-bottom: 1rem; text-transform: uppercase;
+        }
+        .section-header h2 { font-size: 2.25rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 0.75rem; }
+        .section-header p { font-size: 1.1rem; color: var(--text-muted); }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+            padding: 0.8rem 1.6rem; font-size: 0.95rem; font-weight: 600;
+            border-radius: var(--radius-md); cursor: pointer; transition: var(--transition-fast);
+            border: 1px solid transparent; outline: none; white-space: nowrap;
+        }
+        .btn-teal { background-color: var(--accent-teal); color: #ffffff; }
+        .btn-teal:hover { background-color: var(--accent-teal-hover); }
+
+        /* HEADER */
+        .header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-light); z-index: 1000;
+        }
+        .navbar { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        .logo-box { display: flex; align-items: center; gap: 0.8rem; }
+        .logo-box img { width: 44px; height: 44px; object-fit: contain; }
+        .logo-title h1 { font-size: 1.2rem; font-weight: 800; color: var(--primary-navy); }
+        .logo-title span { font-size: 0.75rem; color: var(--text-muted); display: block; }
+        .nav-items { display: flex; align-items: center; gap: 1.75rem; }
+        .nav-link { font-size: 0.95rem; font-weight: 600; color: var(--text-main); }
+        .nav-link:hover, .nav-link.active { color: var(--accent-teal); }
+        .nav-link.back-btn {
+            background-color: var(--primary-navy); color: #ffffff;
+            padding: 0.45rem 1.2rem; border-radius: var(--radius-full);
+        }
+        .nav-link.back-btn:hover { background-color: var(--accent-teal); }
+
+        /* HERO HEADER PAGE */
+        .page-banner {
+            padding-top: 130px; padding-bottom: 50px;
+            background: linear-gradient(135deg, var(--primary-navy-dark), var(--primary-navy));
+            color: #ffffff; text-align: center;
+        }
+        .page-banner h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .page-banner p { color: #94a3b8; font-size: 1.1rem; }
+
+        /* FILTER TABS */
+        .filter-tabs { display: flex; justify-content: center; gap: 0.75rem; margin-bottom: 3rem; flex-wrap: wrap; }
+        .filter-tab-btn {
+            padding: 0.6rem 1.4rem; border-radius: var(--radius-full);
+            background-color: var(--card-bg); color: var(--text-muted); font-weight: 600;
+            border: 1px solid var(--border-light); cursor: pointer; transition: var(--transition-fast);
+        }
+        .filter-tab-btn.active, .filter-tab-btn:hover {
+            background-color: var(--primary-navy); color: #ffffff; border-color: var(--primary-navy);
+        }
+
+        /* WORKS GRID */
+        .works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }
+        .work-card {
+            background-color: var(--card-bg); border-radius: var(--radius-lg); overflow: hidden;
+            border: 1px solid var(--border-light); box-shadow: var(--shadow-card);
+            transition: var(--transition-smooth); display: flex; flex-direction: column;
+        }
+        .work-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+        .work-media-box { position: relative; height: 220px; overflow: hidden; background-color: #000; }
+        .work-media-box img, .work-media-box video { width: 100%; height: 100%; object-fit: cover; }
+        .tag-badge {
+            position: absolute; top: 1rem; left: 1rem; background-color: rgba(15, 43, 72, 0.85);
+            color: #ffffff; padding: 0.25rem 0.75rem; border-radius: var(--radius-full);
+            font-size: 0.75rem; font-weight: 700; backdrop-filter: blur(4px);
+        }
+        .work-body { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
+        .work-body h3 { font-size: 1.25rem; font-weight: 700; color: var(--primary-navy); margin-bottom: 0.5rem; }
+        .work-body p { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1.25rem; flex-grow: 1; }
+        .work-meta { font-size: 0.82rem; color: #94a3b8; border-top: 1px solid var(--border-light); padding-top: 0.75rem; display: flex; justify-content: space-between; }
+
+        /* MODAL PREVIEW */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(10, 28, 48, 0.8); backdrop-filter: blur(8px);
+            z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+            opacity: 0; visibility: hidden; transition: var(--transition-smooth);
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-card {
+            background-color: var(--card-bg); border-radius: var(--radius-lg); max-width: 750px; width: 100%;
+            overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4); position: relative;
+        }
+        .modal-close {
+            position: absolute; top: 1rem; right: 1rem; background: rgba(0,0,0,0.6); color: #fff;
+            width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; border: none; cursor: pointer; z-index: 10;
+        }
+
+        /* FOOTER */
+        .footer-dark { background-color: var(--primary-navy-dark); color: #94a3b8; padding: 3rem 0 1.5rem 0; font-size: 0.9rem; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="header">
+        <div class="container navbar">
+            <a href="index.html" class="logo-box">
+                <!-- 相對路徑讀取 graph/圖片 -->
+                <img src="graph/logo.png" alt="慈濟大學校徽" onerror="this.src='https://placehold.co/100x100/0f2b48/ffffff?text=TCU+MDM'">
+                <div class="logo-title">
+                    <h1>慈濟大學 經營管理學系</h1>
+                    <span>Department of Business Management, TCU</span>
+                </div>
+            </a>
+
+            <nav>
+                <ul class="nav-items">
+                    <!-- 跨頁超連結：返回首頁 index.html -->
+                    <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> 首頁 / 系所簡介</a></li>
+                    <li><a href="studentworks.html" class="nav-link active">學生作品專區</a></li>
+                    <li><a href="index.html#contact" class="nav-link">聯絡我們</a></li>
+                    <li><a href="index.html" class="nav-link back-btn"><i class="fa-solid fa-arrow-left"></i> 返回首頁</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- BANNER -->
+    <div class="page-banner">
+        <div class="container">
+            <h1><i class="fa-solid fa-graduation-cap" style="color: var(--accent-gold);"></i> 學生優秀作品展覽館</h1>
+            <p>展示經管系學生在商業企劃、智慧行銷、專題研究與多媒體創作之卓越成果</p>
+        </div>
+    </div>
+
+    <!-- MAIN WORKS SECTION -->
+    <section class="section">
+        <div class="container">
+            
+            <!-- FILTER TABS -->
+            <div class="filter-tabs">
+                <button class="filter-tab-btn active" onclick="filterWorks('all')">全部作品</button>
+                <button class="filter-tab-btn" onclick="filterWorks('plan')">商業企劃與個案</button>
+                <button class="filter-tab-btn" onclick="filterWorks('mkt')">智慧行銷專題</button>
+                <button class="filter-tab-btn" onclick="filterWorks('video')">影音與多媒體作品</button>
+            </div>
+
+            <!-- WORKS GRID -->
+            <div class="works-grid" id="worksGrid">
+
+                <!-- WORK ITEM 1 (企劃案) -->
+                <div class="work-card" data-category="plan">
+                    <div class="work-media-box">
+                        <span class="tag-badge">商業企劃</span>
+                        <!-- 相對路徑 graph/圖片 -->
+                        <img src="graph/project-plan1.jpg" alt="永續創新商業模式企劃" onerror="this.src='https://placehold.co/600x400/0f2b48/ffffff?text=Business+Plan+Project'">
+                    </div>
+                    <div class="work-body">
+                        <h3>永續創新商業模式企劃案</h3>
+                        <p>結合循環經濟與 ESG 理念，針對在地農特產品設計之綠色供應鏈與創新獲利模式競賽獲獎作品。</p>
+                        <div class="work-meta">
+                            <span><i class="fa-solid fa-user-group"></i> 指導教授：林珍如 教授</span>
+                            <span>2025 學年度</span>
+                        </div>
+                        <button class="btn btn-teal" style="margin-top: 1rem; width: 100%;" onclick="openModal('永續創新商業模式企劃案', '本企劃案榮獲校園創新創業競賽第一名。詳細內容包含市場分析、財務預測與ESG評估報告。', 'graph/project-plan1.jpg')">檢視作品詳情</button>
+                    </div>
+                </div>
+
+                <!-- WORK ITEM 2 (行銷專題) -->
+                <div class="work-card" data-category="mkt">
+                    <div class="work-media-box">
+                        <span class="tag-badge">行銷專題</span>
+                        <img src="graph/project-mkt1.jpg" alt="智慧零售門市消費行為分析" onerror="this.src='https://placehold.co/600x400/0d9488/ffffff?text=Smart+Retail+Research'">
+                    </div>
+                    <div class="work-body">
+                        <h3>智慧零售門市動線與消費行為分析</h3>
+                        <p>運用知足咖啡館與智慧商店實習場域，透過大數據與熱點追蹤分析顧客購買決策歷程。</p>
+                        <div class="work-meta">
+                            <span><i class="fa-solid fa-user-group"></i> 經管系第21屆專題組</span>
+                            <span>2025 學年度</span>
+                        </div>
+                        <button class="btn btn-teal" style="margin-top: 1rem; width: 100%;" onclick="openModal('智慧零售門市動線與消費行為分析', '本研究深入探討新零售場域中消費者佇留時間與結帳轉化率之關係，提供門市優化建議。', 'graph/project-mkt1.jpg')">檢視作品詳情</button>
+                    </div>
+                </div>
+
+                <!-- WORK ITEM 3 (影音作品/預留 <video> 標籤) -->
+                <div class="work-card" data-category="video">
+                    <div class="work-media-box">
+                        <span class="tag-badge">影音創作</span>
+                        <!-- 使用相對路徑預留影片標籤 <video> -->
+                        <video controls poster="graph/project-video1.jpg">
+                            <source src="graph/project-demo.mp4" type="video/mp4">
+                            您的瀏覽器不支援 HTML5 影片播放。
+                        </video>
+                    </div>
+                    <div class="work-body">
+                        <h3>系所形象宣傳與短影音行銷專案</h3>
+                        <p>學生自編自導自演之短影音行銷作品，結合社群媒體演算法進行多管道曝光與品牌推廣。</p>
+                        <div class="work-meta">
+                            <span><i class="fa-solid fa-video"></i> 數位行銷小組作品</span>
+                            <span>2026 學年度</span>
+                        </div>
+                        <button class="btn btn-teal" style="margin-top: 1rem; width: 100%;" onclick="openModal('系所形象宣傳與短影音行銷專案', '作品展現學生在數位影音剪輯、腳本撰寫與社群媒體社群行銷的實務能力。', 'graph/project-video1.jpg')">檢視作品詳情</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PREVIEW MODAL -->
+    <div class="modal-overlay" id="workModal">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div style="height: 280px; overflow: hidden; background: #000;">
+                <img id="modalImg" src="" alt="Work Detail" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div style="padding: 2rem;">
+                <h3 id="modalTitle" style="font-size: 1.5rem; color: var(--primary-navy); margin-bottom: 0.75rem;"></h3>
+                <p id="modalDesc" style="color: var(--text-muted); line-height: 1.7;"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer-dark">
+        <div class="container">
+            <p>&copy; 2026 慈濟大學 經營管理學系 版權所有 | Department of Business Management, TCU</p>
+            <p style="margin-top: 0.5rem;"><a href="index.html" style="color: var(--accent-gold); text-decoration: underline;">返回系所簡介首頁</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function filterWorks(category) {
+            const btns = document.querySelectorAll('.filter-tab-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.work-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function openModal(title, desc, imgSrc) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalDesc').textContent = desc;
+            document.getElementById('modalImg').src = imgSrc;
+            document.getElementById('modalImg').onerror = function() {
+                this.src = 'https://placehold.co/600x400/0f2b48/ffffff?text=Work+Preview';
+            };
+            document.getElementById('workModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('workModal').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
