@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>學生作品與系所空間 | 慈濟大學 經營管理學系</title>
+    <title>學生作品展覽 | 慈濟大學 經營管理學系</title>
     <!-- Google Fonts & Font Awesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -24,217 +24,115 @@
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background-color: var(--bg-light); color: var(--text-main); line-height: 1.7; }
 
-        body {
-            font-family: 'Noto Sans TC', 'Inter', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-main);
-            line-height: 1.7;
-        }
-
-        /* 導覽列 */
+        /* 頂部導覽列 (純文字與 Icon 設計，不放任何圖片) */
         .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(15, 43, 72, 0.96);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            padding: 0.8rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: rgba(15, 43, 72, 0.96); backdrop-filter: blur(12px);
+            z-index: 1000; padding: 0.9rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
 
         .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: #fff;
+            display: flex; align-items: center; gap: 12px;
+            text-decoration: none; color: #fff;
         }
 
-        .nav-logo {
-            height: 42px;
-            width: auto;
-            border-radius: 6px;
-            background: #fff;
-            padding: 2px;
+        .brand-badge {
+            width: 38px; height: 38px;
+            background: linear-gradient(135deg, var(--accent-gold), #f59e0b);
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+            color: #fff; font-weight: 800; font-size: 1.1rem;
         }
 
         .btn-back-home {
-            background: rgba(255,255,255,0.15);
-            color: #fff;
-            padding: 8px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            border: 1px solid rgba(255,255,255,0.3);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            background: rgba(255,255,255,0.15); color: #fff;
+            padding: 8px 20px; border-radius: 50px;
+            text-decoration: none; font-weight: 600; font-size: 0.9rem;
+            transition: var(--transition); border: 1px solid rgba(255,255,255,0.3);
+            display: flex; align-items: center; gap: 8px;
         }
 
         .btn-back-home:hover {
-            background: var(--accent-gold);
-            border-color: var(--accent-gold);
+            background: var(--accent-gold); border-color: var(--accent-gold);
             transform: translateY(-2px);
         }
 
-        /* 頁面標頭 Header */
+        /* 頁面 Banner Header (使用 space.JPG 作為視覺背景) */
         .page-header {
             margin-top: 70px;
-            background: linear-gradient(135deg, rgba(15,43,72,0.95), rgba(10,28,48,0.9)), url('space.JPG') center/cover no-repeat;
-            color: #fff;
-            padding: 5rem 5% 4rem;
-            text-align: center;
-            position: relative;
+            background: linear-gradient(135deg, rgba(15,43,72,0.92), rgba(10,28,48,0.88)), url('space.JPG') center/cover no-repeat;
+            color: #fff; padding: 5rem 5% 4rem; text-align: center;
         }
 
-        .page-title {
-            font-size: 2.4rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-        }
+        .page-title { font-size: 2.4rem; font-weight: 800; margin-bottom: 0.8rem; }
+        .page-desc { color: rgba(255,255,255,0.85); font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
 
-        .page-desc {
-            color: rgba(255,255,255,0.85);
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
+        .container { max-width: 1280px; margin: 0 auto; padding: 4rem 5%; }
 
-        /* 內容容器 */
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 4rem 5%;
-        }
-
-        /* 作品卡片網格 */
-        .works-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 2.5rem;
-        }
-
+        /* 作品網格卡片 */
+        .works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2.5rem; }
         .work-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-color);
+            background: var(--card-bg); border-radius: 16px; overflow: hidden;
+            box-shadow: var(--shadow-md); border: 1px solid var(--border-color);
             transition: var(--transition);
         }
+        .work-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: rgba(217,119,6,0.4); }
 
-        .work-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-            border-color: rgba(217, 119, 6, 0.4);
-        }
-
-        .work-media {
-            position: relative;
-            height: 230px;
-            overflow: hidden;
-            background: #0f172a;
-        }
-
-        .work-media img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .work-card:hover .work-media img {
-            transform: scale(1.06);
-        }
+        .work-media { position: relative; height: 230px; overflow: hidden; background: #0f172a; }
+        .work-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .work-card:hover .work-media img { transform: scale(1.06); }
 
         .work-tag {
-            position: absolute;
-            top: 14px;
-            right: 14px;
-            background: rgba(15, 43, 72, 0.88);
-            color: #fef08a;
-            border: 1px solid rgba(217, 119, 6, 0.4);
-            font-size: 0.8rem;
-            padding: 4px 12px;
-            border-radius: 20px;
-            backdrop-filter: blur(4px);
-            font-weight: 500;
+            position: absolute; top: 14px; right: 14px;
+            background: rgba(15, 43, 72, 0.88); color: #fef08a;
+            border: 1px solid rgba(217, 119, 6, 0.4); font-size: 0.8rem;
+            padding: 4px 12px; border-radius: 20px; backdrop-filter: blur(4px); font-weight: 600;
         }
 
-        .work-body {
-            padding: 1.8rem;
-        }
+        .work-body { padding: 1.8rem; }
+        .work-title { font-size: 1.25rem; color: var(--primary-navy); margin-bottom: 0.6rem; font-weight: 700; }
+        .work-author { font-size: 0.9rem; color: var(--accent-gold); margin-bottom: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+        .work-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
 
-        .work-title {
-            font-size: 1.25rem;
-            color: var(--primary-navy);
-            margin-bottom: 0.6rem;
-            font-weight: 700;
-        }
-
-        .work-author {
-            font-size: 0.9rem;
-            color: var(--accent-gold);
-            margin-bottom: 0.8rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .work-desc {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        /* 頁尾 Footer */
         footer {
-            background: var(--primary-dark);
-            color: rgba(255,255,255,0.6);
-            text-align: center;
-            padding: 2.5rem;
-            font-size: 0.9rem;
-            margin-top: 4rem;
+            background: var(--primary-dark); color: rgba(255,255,255,0.6);
+            text-align: center; padding: 2.5rem; font-size: 0.9rem; margin-top: 4rem;
             border-top: 1px solid rgba(255,255,255,0.08);
-        }
-
-        @media (max-width: 768px) {
-            .page-title { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
-  
+    <!-- 純文字與 Icon 頂部導覽列 (不含圖片) -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <div class="brand-badge">TCU</div>
+            <div>
+                <h1 style="font-size: 1.15rem; font-weight: 800;">慈濟大學 經營管理學系</h1>
+                <p style="font-size: 0.72rem; color: rgba(255,255,255,0.65);">Student Works Showcase</p>
+            </div>
+        </a>
+        <a href="index.html" class="btn-back-home"><i class="fa-solid fa-house"></i> 返回系所首頁</a>
+    </nav>
 
-    <!-- 頁面標頭（背景使用了您上傳的 space.JPG） -->
+    <!-- Header Banner -->
     <header class="page-header">
         <h1 class="page-title">學生作品與學習成果展示</h1>
         <p class="page-desc">展示經管系學生在專題實作、行銷企劃與教學空間中的學習點滴與優秀成果</p>
     </header>
 
-    <!-- 內容展示區 -->
+    <!-- 展示卡片區域 -->
     <main class="container">
-        
         <div class="works-grid">
 
-            <!-- 作品卡片 1：讀取您上傳的 work.JPG -->
+            <!-- 卡片 1：讀取 work.JPG -->
             <div class="work-card">
                 <div class="work-media">
-                    <img src="work.JPG" alt="學生實作作品照片" onerror="this.src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600'">
+                    <img src="work.JPG" alt="學生實作作品照片" onerror="this.src='https://placehold.co/600x400/0f2b48/ffffff?text=Student+Work'">
                     <span class="work-tag">學生作品成果</span>
                 </div>
                 <div class="work-body">
@@ -244,10 +142,10 @@
                 </div>
             </div>
 
-            <!-- 空間卡片 2：讀取您上傳的 space.JPG -->
+            <!-- 卡片 2：讀取 space.JPG -->
             <div class="work-card">
                 <div class="work-media">
-                    <img src="space.JPG" alt="系辦與教學場域照片" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?w=600'">
+                    <img src="space.JPG" alt="系辦與教學場域照片" onerror="this.src='https://placehold.co/600x400/0f2b48/ffffff?text=Department+Space'">
                     <span class="work-tag">系所學習空間</span>
                 </div>
                 <div class="work-body">
@@ -258,12 +156,11 @@
             </div>
 
         </div>
-
     </main>
 
     <!-- 頁尾 -->
     <footer>
-        <p>&copy; 2026 慈濟大學經營管理學系 版權所有 | Tzu Chi University Department of Business Management</p>
+        <p>&copy; 2026 慈濟大學經營管理學系 版權所有 | Department of Business Management, TCU</p>
     </footer>
 
 </body>
