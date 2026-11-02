@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Internal CSS (完全包含在同一個 HTML 中) -->
+    <!-- Internal CSS (單一 HTML 檔案) -->
     <style>
         :root {
             --primary-navy: #0f2b48;
@@ -42,7 +42,7 @@
             scroll-behavior: smooth;
         }
 
-        /* Top Bar */
+        /* Top Bar 頂部資訊列 */
         .top-bar {
             background: var(--primary-dark);
             color: rgba(255,255,255,0.7);
@@ -63,7 +63,7 @@
             margin-right: 6px;
         }
 
-        /* Navbar */
+        /* Navbar 導覽列 */
         .navbar {
             position: sticky;
             top: 0;
@@ -137,10 +137,10 @@
             box-shadow: 0 6px 20px rgba(217, 119, 6, 0.45);
         }
 
-        /* Hero Section */
+        /* Hero Section 英雄主視圖 */
         .hero {
             min-height: 85vh;
-            background: linear-gradient(135deg, rgba(15,43,72,0.92), rgba(10,28,48,0.88)), url('graph/hero-bg.jpg') center/cover no-repeat;
+            background: linear-gradient(135deg, rgba(15,43,72,0.92), rgba(10,28,48,0.88)), url('space.JPG') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -229,7 +229,7 @@
             transform: translateY(-3px);
         }
 
-        /* Sections */
+        /* 通用內容區塊 */
         .section {
             padding: 6rem 5%;
             max-width: 1280px;
@@ -265,7 +265,7 @@
             margin: 0 auto;
         }
 
-        /* Feature Cards */
+        /* 場域特色卡片 */
         .facilities-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -341,7 +341,7 @@
             line-height: 1.6;
         }
 
-        /* Modal Sub-window */
+        /* Modal 彈窗組件 */
         .modal {
             display: none;
             position: fixed;
@@ -394,7 +394,7 @@
             padding: 2rem;
         }
 
-        /* Footer */
+        /* Footer 頁尾 */
         footer {
             background: var(--primary-dark);
             color: rgba(255,255,255,0.75);
@@ -465,7 +465,8 @@
     <!-- 導覽列 -->
     <nav class="navbar">
         <a href="index.html" class="nav-brand">
-            <img src="graph/logo.png" alt="慈濟大學校徽" class="nav-logo" onerror="this.src='https://via.placeholder.com/50?text=TCU'">
+            <!-- 讀取您上傳的 tcu.jpg -->
+            <img src="tcu.jpg" alt="慈濟大學校徽" class="nav-logo" onerror="this.src='https://via.placeholder.com/50?text=TCU'">
             <div class="nav-title">
                 <h1>慈濟大學 經營管理學系</h1>
                 <p>Dept. of Business Management</p>
@@ -474,8 +475,6 @@
         <ul class="nav-menu">
             <li><a href="#about" class="nav-link">系所簡介</a></li>
             <li><a href="#facilities" class="nav-link">特色場域</a></li>
-            <li><a href="#curriculum" class="nav-link">課程規劃</a></li>
-            <!-- 按鈕連結指定跳轉至 studentworks.html -->
             <li><a href="studentworks.html" class="nav-link btn-nav-highlight"><i class="fa-solid fa-graduation-cap"></i> 學生作品專區</a></li>
         </ul>
     </nav>
@@ -490,7 +489,6 @@
             <p class="hero-subtitle">結合高規格創新教學場域、個案教學研討與企業實習，為您打造堅實的職場競爭力。</p>
             <div class="hero-btns">
                 <a href="#facilities" class="btn-primary">探索特色教學場域</a>
-                <!-- 跳轉第二頁學生作品按鈕 -->
                 <a href="studentworks.html" class="btn-secondary"><i class="fa-solid fa-folder-open"></i> 觀看學生作品展</a>
             </div>
         </div>
@@ -510,7 +508,7 @@
         </div>
     </section>
 
-    <!-- 特色教學場域 (含點擊 Modal 彈窗互動) -->
+    <!-- 特色教學場域 -->
     <section id="facilities" class="section">
         <div class="section-header">
             <span class="section-subtitle">FACILITIES</span>
@@ -519,10 +517,10 @@
         </div>
 
         <div class="facilities-grid">
-            <!-- 場域 1 -->
-            <div class="facility-card" onclick="openModal('知足咖啡館', '外場行銷體驗實習場域，建置高規專業餐飲與服務設備。學生可親自參與咖啡館營運、品質管理與實體行銷活動企劃。', 'graph/cafe-room.jpg')">
+            <!-- 咖啡館 -->
+            <div class="facility-card" onclick="openModal('知足咖啡館 (實習教室)', '外場行銷體驗實習場域，建置高規專業餐飲與服務設備。學生可親自參與咖啡館營運、品質管理與實體行銷活動企劃。', 'space.JPG')">
                 <div class="facility-img-wrapper">
-                    <img src="graph/cafe-room.jpg" alt="知足咖啡館" class="facility-img" onerror="this.src='https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600'">
+                    <img src="space.JPG" alt="知足咖啡館" class="facility-img" onerror="this.src='https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600'">
                     <div class="facility-overlay"></div>
                 </div>
                 <div class="facility-body">
@@ -531,10 +529,10 @@
                 </div>
             </div>
 
-            <!-- 場域 2 -->
-            <div class="facility-card" onclick="openModal('個案教學研討室', '以哈佛個案教學法理念設計之階梯式研討環境，配置影音設備，強化學生邏輯思考與思辨表達能力。', 'graph/case-room.jpg')">
+            <!-- 個案研討室 -->
+            <div class="facility-card" onclick="openModal('個案教學研討室', '以哈佛個案教學法理念設計之階梯式研討環境，配置優質影音設備，強化學生邏輯思考與思辨表達能力。', 'space.JPG')">
                 <div class="facility-img-wrapper">
-                    <img src="graph/case-room.jpg" alt="個案教學研討室" class="facility-img" onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600'">
+                    <img src="space.JPG" alt="個案教學研討室" class="facility-img" onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600'">
                     <div class="facility-overlay"></div>
                 </div>
                 <div class="facility-body">
@@ -543,10 +541,10 @@
                 </div>
             </div>
 
-            <!-- 場域 3 -->
-            <div class="facility-card" onclick="openModal('智慧商店實作區', '建置虛擬情境與智慧零售設備，讓學生提早適應無人商店、POS數據分析與零售科技。', 'graph/smart-store.jpg')">
+            <!-- 智慧商店 -->
+            <div class="facility-card" onclick="openModal('智慧商店實作區', '建置虛擬情境與智慧零售設備，讓學生提早適應無人商店、POS數據分析與零售科技。', 'space.JPG')">
                 <div class="facility-img-wrapper">
-                    <img src="graph/smart-store.jpg" alt="智慧商店" class="facility-img" onerror="this.src='https://images.unsplash.com/photo-1556742049-0a670f4a4591?w=600'">
+                    <img src="space.JPG" alt="智慧商店" class="facility-img" onerror="this.src='https://images.unsplash.com/photo-1556742049-0a670f4a4591?w=600'">
                     <div class="facility-overlay"></div>
                 </div>
                 <div class="facility-body">
