@@ -1,8 +1,293 @@
-<html>
+<!DOCTYPE html>
+<html lang="zh-Hant">
 <head>
-  <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學生作品展示 | 慈濟大學 經營管理學系</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-navy: #0f2b48;
+            --primary-dark: #0a1c30;
+            --accent-gold: #d97706;
+            --accent-gold-hover: #b45309;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --shadow-md: 0 4px 20px -2px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 30px -5px rgba(0,0,0,0.12);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        /* 導覽列 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 43, 72, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .btn-back-home {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-back-home:hover {
+            background: var(--accent-gold);
+            border-color: var(--accent-gold);
+        }
+
+        /* Header 橫幅 */
+        .page-header {
+            margin-top: 75px;
+            background: linear-gradient(135deg, var(--primary-navy), var(--primary-dark));
+            color: #fff;
+            padding: 4rem 5% 3rem;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-desc {
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* 內容容器 */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 3rem 5%;
+        }
+
+        /* 分類按鈕 */
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary-navy);
+            color: #fff;
+            border-color: var(--primary-navy);
+        }
+
+        /* 作品卡片網格 */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .work-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .work-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .work-media {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .work-media img, .work-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .work-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(15, 43, 72, 0.85);
+            color: #fff;
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .work-body {
+            padding: 1.5rem;
+        }
+
+        .work-title {
+            font-size: 1.15rem;
+            color: var(--primary-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .work-author {
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .work-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* 頁尾 */
+        footer {
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+    </style>
 </head>
 <body>
-  <a href="https://114114113.github.io/tcu/"><img src="tcu.jpg"><img src="work.JPG"><img src="space.JPG"></a>
+
+    <!-- 導覽列（包含返回首頁按鈕） -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <img src="graph/logo.png" alt="慈濟大學校徽" style="height: 38px;" onerror="this.src='https://via.placeholder.com/40?text=TCU'">
+            <span style="font-weight: 700;">慈濟大經營管理學系</span>
+        </a>
+        <!-- 返回首頁按鈕 -->
+        <a href="index.html" class="btn-back-home"><i class="fa-solid fa-house"></i> 返回系所首頁</a>
+    </nav>
+
+    <!-- 頁頭 -->
+    <header class="page-header">
+        <h1 class="page-title">學生優秀專題與作品展</h1>
+        <p class="page-desc">展示經管系學子於各項競賽、專題製作與實習課程中的創新成果</p>
+    </header>
+
+    <!-- 內容主體 -->
+    <main class="container">
+        
+        <!-- 分類標籤 -->
+        <div class="filter-bar">
+            <button class="filter-btn active">全部作品</button>
+            <button class="filter-btn">行銷企劃</button>
+            <button class="filter-btn">多媒體與影片</button>
+            <button class="filter-btn">專題研究</button>
+        </div>
+
+        <!-- 作品展示區（後續新增照片與影片均可在此複製擴建） -->
+        <div class="works-grid">
+
+            <!-- 作品 1：影像作品（預留影片區塊） -->
+            <div class="work-card">
+                <div class="work-media">
+                    <!-- 使用相對路徑 graph/ 讀取預留影片 -->
+                    <video controls poster="graph/project1.jpg">
+                        <source src="graph/demo-video.mp4" type="video/mp4">
+                        您的瀏覽器不支援影片播放。
+                    </video>
+                    <span class="work-tag">影音作品</span>
+                </div>
+                <div class="work-body">
+                    <h3 class="work-title">知足咖啡館 品牌宣傳短片</h3>
+                    <div class="work-author"><i class="fa-solid fa-user"></i> 創作者：張同學、李同學</div>
+                    <p class="work-desc">紀錄外場實習場域運作，結合視覺傳播與經營行銷理念之短影音製作。</p>
+                </div>
+            </div>
+
+            <!-- 作品 2：行銷企劃案 -->
+            <div class="work-card">
+                <div class="work-media">
+                    <img src="graph/project1.jpg" alt="專案圖片" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600'">
+                    <span class="work-tag">行銷企劃</span>
+                </div>
+                <div class="work-body">
+                    <h3 class="work-title">花蓮在地農特產品創新行銷企劃</h3>
+                    <div class="work-author"><i class="fa-solid fa-user"></i> 創作者：林同學、王同學</div>
+                    <p class="work-desc">深入花蓮在地農家，建立地方創生品牌形象與線上社群行銷策略。</p>
+                </div>
+            </div>
+
+            <!-- 作品 3：專題研究 -->
+            <div class="work-card">
+                <div class="work-media">
+                    <img src="graph/smart-store.jpg" alt="智慧零售專題" onerror="this.src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600'">
+                    <span class="work-tag">專題研究</span>
+                </div>
+                <div class="work-body">
+                    <h3 class="work-title">智慧無人商店消費者行為調查</h3>
+                    <div class="work-author"><i class="fa-solid fa-user"></i> 創作者：陳同學</div>
+                    <p class="work-desc">運用智慧商店場域進行消費者體驗問卷收集與數據分析。</p>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- 頁尾 -->
+    <footer>
+        <p>&copy; 2026 慈濟大學經營管理學系 學生作品集專區 | All Rights Reserved</p>
+    </footer>
+
 </body>
 </html>
