@@ -118,22 +118,42 @@
         }
         .nav-link.highlight:hover { background-color: #b45309; transform: translateY(-2px); }
 
-        /* HERO SECTION */
+        /* HERO SECTION (1:5 比例與漸層系辦照片背景) */
         .hero-section {
-            padding-top: 150px; padding-bottom: 100px;
-            background: linear-gradient(135deg, var(--primary-navy-dark) 0%, var(--primary-navy) 100%);
-            color: #ffffff; position: relative; overflow: hidden; min-height: 88vh;
-            display: flex; align-items: center;
+            margin-top: 80px;
+            width: 100%;
+            min-height: 380px;
+            aspect-ratio: 5 / 1;
+            /* 背景圖片為 space.JPG，並加上深藍透明漸層遮罩 */
+            background: linear-gradient(135deg, rgba(10, 28, 48, 0.88) 0%, rgba(15, 43, 72, 0.75) 100%), url('space.JPG') center/cover no-repeat;
+            color: #ffffff;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 3rem 0;
         }
-        .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; align-items: center; }
-        .hero-text h1 { font-size: 3rem; font-weight: 800; line-height: 1.25; margin-bottom: 1.25rem; letter-spacing: -0.01em; }
-        .hero-text p { font-size: 1.15rem; color: #cbd5e1; margin-bottom: 2.25rem; line-height: 1.7; }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-text h1 { 
+            font-size: 2.5rem; 
+            font-weight: 800; 
+            line-height: 1.3; 
+            margin-bottom: 1rem; 
+            letter-spacing: -0.01em; 
+        }
+
+        .hero-text p { 
+            font-size: 1.1rem; 
+            color: #e2e8f0; 
+            margin-bottom: 1.8rem; 
+            line-height: 1.6; 
+            max-width: 780px;
+        }
+
         .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-        .hero-card {
-            background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.18);
-            border-radius: var(--radius-lg); padding: 2rem; backdrop-filter: blur(12px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
 
         /* OVERVIEW & HISTORY */
         .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; }
@@ -213,8 +233,9 @@
         .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 1.75rem; text-align: center; color: #64748b; }
 
         @media (max-width: 900px) {
-            .hero-grid, .overview-grid, .footer-grid { grid-template-columns: 1fr; }
-            .hero-text h1 { font-size: 2.25rem; }
+            .hero-section { aspect-ratio: auto; min-height: 420px; }
+            .overview-grid, .footer-grid { grid-template-columns: 1fr; }
+            .hero-text h1 { font-size: 2rem; }
             .nav-items { display: none; }
         }
     </style>
@@ -245,24 +266,18 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION (1:5 大氣橫幅 + space.JPG 漸層背景) -->
     <section class="hero-section">
-        <div class="container hero-grid">
-            <div class="hero-text">
-                <span class="badge-pill" style="color: var(--accent-gold); background-color: rgba(217,119,6,0.18);">慈濟大學經營管理學系</span>
-                <h1>培育具社會責任、國際視野與創新思維之商管人才</h1>
-                <p>結合實務個案教學、智慧零售實習場域、企業永續發展（ESG）與國際交流，為您打造接軌全球商業舞台的關鍵競爭力。</p>
-                <div class="hero-actions">
-                    <a href="#about" class="btn btn-gold">探索本系 <i class="fa-solid fa-arrow-right"></i></a>
-                    <a href="studentworks.html" class="btn btn-outline-white"><i class="fa-solid fa-layer-group"></i> 瀏覽學生作品展</a>
-                </div>
-            </div>
-            <div class="hero-card">
-                <!-- 使用您上傳的系辦照片 space.JPG -->
-                <img src="space.JPG" alt="慈濟大學經管系辦與學習環境" style="border-radius: var(--radius-md); width: 100%; height: 260px; object-fit: cover;" onerror="this.src='https://placehold.co/600x400/0f2b48/ffffff?text=TCU+Department+Space'">
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.5rem; text-align: center;">
-                    <div><h3 style="font-size: 1.8rem; color: #fff;">100%</h3><p style="font-size: 0.85rem; color: #cbd5e1;">產業對接實習機會</p></div>
-                    <div><h3 style="font-size: 1.8rem; color: var(--accent-gold-light);">5+</h3><p style="font-size: 0.85rem; color: #cbd5e1;">獨家特色實務教室</p></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="badge-pill" style="color: #fef08a; background-color: rgba(217,119,6,0.3); border: 1px solid rgba(217,119,6,0.5);">慈濟大學經營管理學系</span>
+                    <h1>培育具社會責任、國際視野與創新思維之商管人才</h1>
+                    <p>結合實務個案教學、智慧零售實習場域、企業永續發展（ESG）與國際交流，為您打造接軌全球商業舞台的關鍵競爭力。</p>
+                    <div class="hero-actions">
+                        <a href="#about" class="btn btn-gold">探索本系 <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="studentworks.html" class="btn btn-outline-white"><i class="fa-solid fa-layer-group"></i> 瀏覽學生作品展</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -375,7 +390,7 @@
             </div>
             <div class="facilities-grid">
                 <!-- 個案教學研討室 -->
-                <div class="facility-card" onclick="openModal('個案教學研討室', '梯級弧形座位配置，比照哈佛式個案教學情境，打造高互動性的商業決策研討課堂，訓練學生批判性思考與團隊溝通。', 'space.JPG')">
+                <div class="facility-card" onclick="openModal('個案教學研討室', '梯級弧形座位配置，比照哈佛式個案教學情境，打造高互動性的商業決策研討課堂，訓練學生批判性思考與團隊溝通。', 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&auto=format&fit=crop')">
                     <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&auto=format&fit=crop" alt="個案教學研討室" class="facility-img" onerror="this.src='space.JPG'">
                     <div class="facility-body">
                         <h3>個案教學研討室</h3>
@@ -385,7 +400,7 @@
                 </div>
 
                 <!-- 知足咖啡館實習場域 -->
-                <div class="facility-card" onclick="openModal('知足咖啡館實習場域', '具備專業義式咖啡機與餐飲服務設備，提供學生親自參與門市營運、成本控管、行銷活動規劃與顧客服務的實戰經驗。', 'space.JPG')">
+                <div class="facility-card" onclick="openModal('知足咖啡館實習場域', '具備專業義式咖啡機與餐飲服務設備，提供學生親自參與門市營運、成本控管、行銷活動規劃與顧客服務的實戰經驗。', 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&auto=format&fit=crop')">
                     <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&auto=format&fit=crop" alt="知足咖啡館" class="facility-img" onerror="this.src='space.JPG'">
                     <div class="facility-body">
                         <h3>知足咖啡館實習場域</h3>
@@ -395,7 +410,7 @@
                 </div>
 
                 <!-- 智慧商店實習場域 -->
-                <div class="facility-card" onclick="openModal('智慧商店實習場域', '模擬最新智慧零售情境，結合 POS 系統、自助結帳設備與 IoT 物聯網應用，讓學生掌握新零售營運與數據科技。', 'space.JPG')">
+                <div class="facility-card" onclick="openModal('智慧商店實習場域', '模擬最新智慧零售情境，結合 POS 系統、自助結帳設備與 IoT 物聯網應用，讓學生掌握新零售營運與數據科技。', 'https://images.unsplash.com/photo-1556742049-0a670f4a4591?w=800&auto=format&fit=crop')">
                     <img src="https://images.unsplash.com/photo-1556742049-0a670f4a4591?w=800&auto=format&fit=crop" alt="智慧商店" class="facility-img" onerror="this.src='space.JPG'">
                     <div class="facility-body">
                         <h3>智慧商店實習場域</h3>
@@ -405,7 +420,7 @@
                 </div>
 
                 <!-- 商業數據分析實驗室 -->
-                <div class="facility-card" onclick="openModal('商業數據分析實驗室', '配備高規格電腦與統計分析軟體，提供學生進行大數據探勘、市場調查數據分析與商業智慧視覺化呈現。', 'space.JPG')">
+                <div class="facility-card" onclick="openModal('商業數據分析實驗室', '配備高規格電腦與統計分析軟體，提供學生進行大數據探勘、市場調查數據分析與商業智慧視覺化呈現。', 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&auto=format&fit=crop')">
                     <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&auto=format&fit=crop" alt="商業數據分析實驗室" class="facility-img" onerror="this.src='space.JPG'">
                     <div class="facility-body">
                         <h3>商業數據分析實驗室</h3>
@@ -415,7 +430,7 @@
                 </div>
 
                 <!-- 創新創業討論室 -->
-                <div class="facility-card" onclick="openModal('創新創業討論室', '彈性組合桌椅與多媒體簡報設備，專為學生專題討論、創業競賽團隊與跨領域專案合作設計的開放空間。', 'space.JPG')">
+                <div class="facility-card" onclick="openModal('創新創業討論室', '彈性組合桌椅與多媒體簡報設備，專為學生專題討論、創業競賽團隊與跨領域專案合作設計的開放空間。', 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop')">
                     <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop" alt="創新創業討論室" class="facility-img" onerror="this.src='space.JPG'">
                     <div class="facility-body">
                         <h3>創新創業討論室</h3>
@@ -442,7 +457,6 @@
                     <p style="font-size: 1rem;"><i class="fa-solid fa-user-shield" style="color: var(--accent-gold); width: 26px;"></i> 系主任：林珍如 主任</p>
                 </div>
                 <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card);">
-                    <!-- 使用您上傳的 space.JPG 展示環境 -->
                     <img src="space.JPG" alt="慈濟經管系所環境" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='https://placehold.co/600x300/0f2b48/ffffff?text=Department+Space'">
                 </div>
             </div>
