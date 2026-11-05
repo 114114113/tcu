@@ -82,30 +82,26 @@
         }
         .work-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: rgba(217,119,6,0.4); }
 
-        /* 外框尺寸完全一致（高度 260px，背景為沈穩深灰） */
+        /* 外框固定 260px 高度 */
         .work-media { 
             position: relative; 
             width: 100%; 
             height: 260px;
-            background: #1e293b; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: #f1f5f9; 
             overflow: hidden;
         }
         
-        /* contain 保留整張圖片原始長寬比例、完全不裁切，並填滿一致的外框 */
+        /* cover 滿版鋪滿，不留白邊 */
         .work-media img { 
-            max-width: 100%; 
-            max-height: 100%; 
-            width: auto;
-            height: auto;
-            object-fit: contain;
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover;
+            object-position: center;
             display: block;
             transition: transform 0.5s ease; 
         }
         
-        .work-card:hover .work-media img { transform: scale(1.03); }
+        .work-card:hover .work-media img { transform: scale(1.05); }
 
         .work-tag {
             position: absolute; top: 14px; right: 14px;
@@ -164,7 +160,7 @@
     <main class="container">
         <div class="works-grid">
 
-            <!-- 卡片 1：work.JPG 完整展示 -->
+            <!-- 卡片 1：滿版顯示 work.JPG -->
             <div class="work-card">
                 <div class="work-media">
                     <img src="work.JPG" alt="學生實作作品照片" onerror="this.src='https://placehold.co/600x400/0f2b48/ffffff?text=Student+Work'">
@@ -177,7 +173,7 @@
                 </div>
             </div>
 
-            <!-- 卡片 2：space.JPG 完整展示 -->
+            <!-- 卡片 2：滿版顯示 space.JPG -->
             <div class="work-card">
                 <div class="work-media">
                     <img src="space.JPG" alt="系辦與教學場域照片" onerror="this.src='https://placehold.co/600x400/0f2b48/ffffff?text=Department+Space'">
