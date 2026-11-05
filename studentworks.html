@@ -27,7 +27,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background-color: var(--bg-light); color: var(--text-main); line-height: 1.7; }
 
-        /* 頂部導覽列 (不含圖片，純 Icon 徽章與返回首頁按鈕) */
+        /* 頂部導覽列 */
         .navbar {
             position: fixed; top: 0; left: 0; width: 100%;
             background: rgba(15, 43, 72, 0.96); backdrop-filter: blur(12px);
@@ -61,7 +61,7 @@
             transform: translateY(-2px);
         }
 
-        /* 頁面 Banner Header (使用 space.JPG 作為視覺背景) */
+        /* Header Banner */
         .page-header {
             margin-top: 70px;
             background: linear-gradient(135deg, rgba(15,43,72,0.92), rgba(10,28,48,0.88)), url('space.JPG') center/cover no-repeat;
@@ -73,7 +73,7 @@
 
         .container { max-width: 1280px; margin: 0 auto; padding: 4rem 5%; }
 
-        /* 作品網格卡片 */
+        /* 作品卡片網格 */
         .works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2.5rem; }
         .work-card {
             background: var(--card-bg); border-radius: 16px; overflow: hidden;
@@ -82,15 +82,32 @@
         }
         .work-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: rgba(217,119,6,0.4); }
 
-        .work-media { position: relative; height: 230px; overflow: hidden; background: #0f172a; }
-        .work-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .work-card:hover .work-media img { transform: scale(1.06); }
+        /* 修改：讓容器不限制高度，且照片保持原本的長寬比例 */
+        .work-media { 
+            position: relative; 
+            width: 100%; 
+            background: #f1f5f9; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* 修改：圖片寬度隨容器，高度自動（完全不壓縮、不裁切原本尺寸與比例） */
+        .work-media img { 
+            width: 100%; 
+            height: auto; 
+            display: block;
+            transition: transform 0.5s ease; 
+        }
+        
+        .work-card:hover .work-media img { transform: scale(1.02); }
 
         .work-tag {
             position: absolute; top: 14px; right: 14px;
             background: rgba(15, 43, 72, 0.88); color: #fef08a;
             border: 1px solid rgba(217, 119, 6, 0.4); font-size: 0.8rem;
             padding: 4px 12px; border-radius: 20px; backdrop-filter: blur(4px); font-weight: 600;
+            z-index: 2;
         }
 
         .work-body { padding: 1.8rem; }
@@ -98,7 +115,6 @@
         .work-author { font-size: 0.9rem; color: var(--accent-gold); margin-bottom: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 6px; }
         .work-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
 
-        /* 大型底頁返回按鈕樣式 */
         .btn-bottom-home {
             background: var(--primary-navy); color: #fff;
             padding: 14px 32px; border-radius: 50px; text-decoration: none;
@@ -121,7 +137,7 @@
 </head>
 <body>
 
-    <!-- 頂部導覽列 (含首頁跳轉按鈕 1) -->
+    <!-- 頂部導覽列 -->
     <nav class="navbar">
         <a href="index.html" class="nav-brand">
             <div class="brand-badge">TCU</div>
@@ -130,7 +146,6 @@
                 <p style="font-size: 0.72rem; color: rgba(255,255,255,0.65);">Student Works Showcase</p>
             </div>
         </a>
-        <!-- 按鈕 1 -->
         <a href="index.html" class="btn-back-home"><i class="fa-solid fa-house"></i> 返回系所首頁</a>
     </nav>
 
@@ -144,7 +159,7 @@
     <main class="container">
         <div class="works-grid">
 
-            <!-- 卡片 1：讀取 work.JPG -->
+            <!-- 卡片 1：讀取 work.JPG (保持原始比例) -->
             <div class="work-card">
                 <div class="work-media">
                     <img src="work.JPG" alt="學生實作作品照片" onerror="this.src='https://placehold.co/600x400/0f2b48/ffffff?text=Student+Work'">
@@ -157,7 +172,7 @@
                 </div>
             </div>
 
-            <!-- 卡片 2：讀取 space.JPG -->
+            <!-- 卡片 2：讀取 space.JPG (保持原始比例) -->
             <div class="work-card">
                 <div class="work-media">
                     <img src="space.JPG" alt="系辦與教學場域照片" onerror="this.src='https://placehold.co/600x400/0f2b48/ffffff?text=Department+Space'">
@@ -172,7 +187,7 @@
 
         </div>
 
-        <!-- 底部大按鈕 (含首頁跳轉按鈕 2) -->
+        <!-- 底部返回按鈕 -->
         <div style="text-align: center; margin-top: 4rem;">
             <a href="index.html" class="btn-bottom-home">
                 <i class="fa-solid fa-arrow-left"></i> 返回慈濟經管系簡介首頁
