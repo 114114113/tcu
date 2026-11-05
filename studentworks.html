@@ -91,7 +91,7 @@
             overflow: hidden;
         }
         
-        /* cover 滿版鋪滿，不留白邊 */
+        /* 圖片 Cover 滿版鋪滿，不留白邊 */
         .work-media img { 
             width: 100%; 
             height: 100%; 
@@ -153,14 +153,14 @@
     <!-- Header Banner -->
     <header class="page-header">
         <h1 class="page-title">學生作品與學習成果展示</h1>
-        <p class="page-desc">展示經管系學生在專題實作、行銷企劃與教學空間中的學習點滴與優秀成果</p>
+        <p class="page-desc">展示經管系學生在專題實作、行銷企劃與團隊合作中的學習點滴與優秀成果</p>
     </header>
 
     <!-- 展示卡片區域 -->
     <main class="container">
         <div class="works-grid">
 
-            <!-- 卡片 1：滿版顯示 work.JPG -->
+            <!-- 卡片 1：work.JPG -->
             <div class="work-card">
                 <div class="work-media">
                     <img src="work.JPG" alt="學生實作作品照片" onerror="this.src='https://placehold.co/600x400/0f2b48/ffffff?text=Student+Work'">
@@ -173,7 +173,20 @@
                 </div>
             </div>
 
-            <!-- 卡片 2：滿版顯示 space.JPG -->
+            <!-- 卡片 2：group.JPG (新增上傳的照片) -->
+            <div class="work-card">
+                <div class="work-media">
+                    <img src="group.JPG" alt="學生團隊與團隊合作歷程" onerror="this.src='https://placehold.co/600x400/0f2b48/ffffff?text=Team+Group'">
+                    <span class="work-tag">團隊實務合作</span>
+                </div>
+                <div class="work-body">
+                    <h3 class="work-title">團隊競賽與學習歷程紀錄</h3>
+                    <div class="work-author"><i class="fa-solid fa-users"></i> 經管系學生團隊</div>
+                    <p class="work-desc">紀錄學生參與專題研討、商業競賽與跨領域團隊合作之學習點滴與默契展現。</p>
+                </div>
+            </div>
+
+            <!-- 卡片 3：space.JPG -->
             <div class="work-card">
                 <div class="work-media">
                     <img src="space.JPG" alt="系辦與教學場域照片" onerror="this.src='https://placehold.co/600x400/0f2b48/ffffff?text=Department+Space'">
@@ -188,7 +201,7 @@
 
         </div>
 
-        <!-- 底部返回按鈕 -->
+        <!-- 底部返回首頁按鈕 -->
         <div style="text-align: center; margin-top: 4rem;">
             <a href="index.html" class="btn-bottom-home">
                 <i class="fa-solid fa-arrow-left"></i> 返回慈濟經管系簡介首頁
