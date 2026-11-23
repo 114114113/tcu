@@ -6,7 +6,7 @@
     <title>學生作品與學習成果展示 | 慈濟大學 經營管理學系</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -19,6 +19,8 @@
             --card-bg: #FFFFFF;
             --text-primary: #141E28;
             --text-secondary: #5A6572;
+            --hairline-gold: rgba(197, 160, 89, 0.28);
+            --hairline-dark: rgba(11, 22, 34, 0.08);
         }
 
         * {
@@ -35,16 +37,15 @@
             font-family: 'Noto Sans TC', sans-serif;
             background-color: var(--ivory-bg);
             color: var(--text-primary);
-            line-height: 1.7;
+            line-height: 1.75;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 優雅捲動淡入動畫 */
         .reveal {
             opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
-                        transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: translateY(26px);
+            transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .reveal.visible {
@@ -52,67 +53,91 @@
             transform: translateY(0);
         }
 
-        /* iPhone / iOS 極致透明液態玻璃按鈕（香檳金調色） */
+        /* =========================================
+           Apple iOS / visionOS 極致高透液態玻璃系統
+           ========================================= */
+        .ios-glass {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.008) 100%);
+            backdrop-filter: blur(14px) saturate(165%);
+            -webkit-backdrop-filter: blur(14px) saturate(165%);
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.85),
+                        inset 0 -1px 0 rgba(255, 255, 255, 0.18),
+                        inset 0 0 16px rgba(255, 255, 255, 0.08);
+        }
+
         .glass-btn {
             position: relative;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             padding: 12px 26px;
             border-radius: 999px;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             font-weight: 500;
-            letter-spacing: 0.6px;
+            letter-spacing: 1px;
             text-decoration: none;
-            backdrop-filter: blur(10px) saturate(140%);
-            -webkit-backdrop-filter: blur(10px) saturate(140%);
+            backdrop-filter: blur(14px) saturate(165%);
+            -webkit-backdrop-filter: blur(14px) saturate(165%);
             transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
             cursor: pointer;
         }
 
-        .glass-btn-frosted {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.45);
+        .glass-btn-clear {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.005) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             color: #ffffff;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.55);
+            box-shadow: 0 8px 26px rgba(0, 0, 0, 0.12),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.85),
+                        inset 0 -1px 0 rgba(255, 255, 255, 0.16),
+                        inset 0 0 14px rgba(255, 255, 255, 0.08);
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
         }
 
-        .glass-btn-frosted:hover {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.06) 100%);
-            border-color: rgba(255, 255, 255, 0.85);
+        .glass-btn-clear:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.03) 100%);
+            border-color: #ffffff;
             transform: translateY(-2px);
         }
 
         .glass-btn-light {
-            background: linear-gradient(135deg, rgba(197, 160, 89, 0.14) 0%, rgba(197, 160, 89, 0.03) 100%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(197, 160, 89, 0.06) 100%);
             border: 1px solid rgba(197, 160, 89, 0.55);
             color: var(--champagne-dark);
-            box-shadow: 0 8px 22px rgba(11, 22, 34, 0.06),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            box-shadow: 0 6px 20px rgba(11, 22, 34, 0.04),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+                        inset 0 0 12px rgba(255, 255, 255, 0.5);
         }
 
         .glass-btn-light:hover {
-            background: linear-gradient(135deg, rgba(197, 160, 89, 0.25) 0%, rgba(197, 160, 89, 0.09) 100%);
-            border-color: var(--champagne);
-            color: var(--midnight);
+            background: var(--midnight);
+            border-color: var(--midnight);
+            color: var(--champagne-light);
             transform: translateY(-2px);
         }
 
-        /* 頂部午夜墨藍導覽列 */
+        /* 頂部高透午夜墨藍導覽列（與首頁完全一致） */
         nav {
-            background-color: rgba(11, 22, 34, 0.92);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 16px 6%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            background-color: rgba(11, 22, 34, 0.78);
+            backdrop-filter: blur(18px) saturate(160%);
+            -webkit-backdrop-filter: blur(18px) saturate(160%);
+            padding: 15px 6%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
             position: sticky;
             top: 0;
             z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .nav-brand {
@@ -123,21 +148,24 @@
         }
 
         .nav-logo {
-            background: linear-gradient(135deg, #D4B26A 0%, #A6823E 100%);
-            color: var(--midnight);
+            border: 1px solid rgba(223, 195, 136, 0.65);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            color: var(--champagne-light);
+            font-family: 'Cormorant Garamond', Georgia, serif;
             font-weight: 700;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 14px rgba(197, 160, 89, 0.28);
+            padding: 7px 12px;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            letter-spacing: 2px;
         }
 
         .nav-title h1 {
+            font-family: 'Noto Serif TC', Georgia, serif;
             color: #ffffff;
-            font-size: 1.15rem;
+            font-size: 1.18rem;
             font-weight: 600;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             line-height: 1.25;
         }
 
@@ -145,78 +173,77 @@
             color: var(--champagne-light);
             font-family: 'Cormorant Garamond', Georgia, serif;
             font-size: 0.88rem;
-            letter-spacing: 0.8px;
+            letter-spacing: 1px;
         }
 
         .btn-back-top {
-            padding: 8px 18px;
-            font-size: 0.88rem;
+            padding: 7px 18px;
+            font-size: 0.86rem;
+            color: var(--champagne-light);
+            border-color: rgba(223, 195, 136, 0.6);
         }
 
-        /* 質感午夜墨藍橫幅區 */
+        /* =========================================
+           實景攝影背景 ＋ 極致高透 iOS 玻璃策展橫幅
+           ========================================= */
         header {
             position: relative;
-            background: radial-gradient(circle at 80% 15%, rgba(197, 160, 89, 0.16) 0%, transparent 50%),
-                        radial-gradient(circle at 20% 85%, rgba(30, 58, 95, 0.35) 0%, transparent 55%),
-                        linear-gradient(135deg, #09121C 0%, #122334 50%, #0C1826 100%);
+            background-image: url('graph/4.JPG');
+            background-size: cover;
+            background-position: center;
             color: #ffffff;
             text-align: center;
-            padding: 74px 20px 68px;
+            padding: 88px 20px 80px;
             overflow: hidden;
-            border-bottom: 2px solid rgba(197, 160, 89, 0.45);
         }
 
         header::before {
             content: "";
             position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 55%;
-            height: 200%;
-            background: linear-gradient(180deg, rgba(197, 160, 89, 0.04) 0%, rgba(255, 255, 255, 0) 100%);
-            transform: rotate(22deg);
-            pointer-events: none;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(11, 22, 34, 0.82) 0%, rgba(11, 22, 34, 0.56) 50%, rgba(11, 22, 34, 0.78) 100%);
+            z-index: 1;
         }
 
-        .header-inner {
+        .header-glass-card {
             position: relative;
-            z-index: 1;
-            max-width: 860px;
+            z-index: 2;
+            max-width: 880px;
             margin: 0 auto;
+            padding: 46px 36px;
+            border-radius: 24px;
         }
 
         .header-pill {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background-color: rgba(197, 160, 89, 0.1);
-            border: 1px solid rgba(197, 160, 89, 0.48);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+            gap: 10px;
             color: var(--champagne-light);
-            padding: 6px 18px;
-            border-radius: 30px;
             font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 0.92rem;
-            font-weight: 600;
-            letter-spacing: 2.5px;
-            margin-bottom: 20px;
-            backdrop-filter: blur(8px);
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 3.5px;
+            margin-bottom: 14px;
+            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
         }
 
         header h1 {
-            font-size: 2.35rem;
+            font-family: 'Noto Serif TC', Georgia, serif;
+            font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 14px;
-            letter-spacing: 2px;
+            margin-bottom: 16px;
+            letter-spacing: 2.2px;
+            text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
         }
 
         header p {
-            font-size: 1.04rem;
+            font-size: 1.02rem;
             font-weight: 300;
-            color: #cbd5e1;
-            max-width: 760px;
+            color: #f1f5f9;
+            max-width: 680px;
             margin: 0 auto 30px;
-            line-height: 1.75;
+            line-height: 1.85;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
         }
 
         .header-tags {
@@ -227,31 +254,84 @@
         }
 
         .header-tag-item {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.01) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.32);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
-            color: #f1f5f9;
             padding: 7px 17px;
             border-radius: 999px;
-            font-size: 0.86rem;
+            color: #ffffff;
+            font-size: 0.85rem;
+            letter-spacing: 0.6px;
             display: inline-flex;
             align-items: center;
             gap: 7px;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
         }
 
         .header-tag-item i {
             color: var(--champagne-light);
         }
 
-        /* 卡片網格主區塊 */
+        /* =========================================
+           主策展區塊與互動篩選列
+           ========================================= */
         main {
             max-width: 1140px;
             margin: 64px auto;
             padding: 0 20px;
         }
 
+        .filter-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 42px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid var(--hairline-gold);
+        }
+
+        .filter-title {
+            font-family: 'Noto Serif TC', Georgia, serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--midnight);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--hairline-gold);
+            color: var(--text-secondary);
+            padding: 8px 20px;
+            border-radius: 999px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.28s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--champagne);
+            color: var(--midnight);
+        }
+
+        .filter-btn.active {
+            background: var(--midnight);
+            border-color: var(--midnight);
+            color: var(--champagne-light);
+            box-shadow: 0 6px 16px rgba(11, 22, 34, 0.16);
+        }
+
+        /* 雙欄策展卡片網格 */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -260,7 +340,10 @@
 
         @media (max-width: 768px) {
             header h1 {
-                font-size: 1.85rem;
+                font-size: 1.9rem;
+            }
+            .header-glass-card {
+                padding: 34px 20px;
             }
             .cards-grid {
                 grid-template-columns: 1fr;
@@ -270,13 +353,18 @@
         .work-card {
             position: relative;
             background: var(--card-bg);
+            border: 1px solid var(--hairline-gold);
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 18px 40px rgba(11, 22, 34, 0.05);
+            box-shadow: 0 18px 40px rgba(11, 22, 34, 0.045);
             transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
             cursor: pointer;
             display: flex;
             flex-direction: column;
+        }
+
+        .work-card.hidden {
+            display: none;
         }
 
         .work-card::after {
@@ -285,8 +373,8 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--champagne) 0%, var(--champagne-light) 100%);
+            height: 2px;
+            background: var(--champagne);
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.35s ease;
@@ -294,7 +382,7 @@
 
         .work-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 24px 50px rgba(11, 22, 34, 0.1);
+            box-shadow: 0 24px 50px rgba(11, 22, 34, 0.09);
         }
 
         .work-card:hover::after {
@@ -304,7 +392,7 @@
         .card-img-box {
             position: relative;
             width: 100%;
-            height: 300px;
+            height: 310px;
             background-color: var(--midnight);
             overflow: hidden;
         }
@@ -314,46 +402,41 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.5s ease;
+            transition: transform 0.55s ease;
         }
 
         .work-card:hover .card-img-box img {
             transform: scale(1.05);
         }
 
+        /* 圖片上方極致高透 iOS 玻璃標籤 */
         .card-badge {
             position: absolute;
             top: 16px;
             right: 16px;
-            background-color: rgba(11, 22, 34, 0.52);
-            color: var(--champagne-light);
-            border: 1px solid rgba(197, 160, 89, 0.55);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
-            padding: 5px 15px;
+            color: #ffffff;
+            padding: 6px 16px;
             border-radius: 999px;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 500;
-            letter-spacing: 0.5px;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            letter-spacing: 0.8px;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.55);
         }
 
         .zoom-hint {
             position: absolute;
             bottom: 14px;
             right: 16px;
-            background-color: rgba(11, 22, 34, 0.45);
-            border: 1px solid rgba(255, 255, 255, 0.4);
             color: #ffffff;
             padding: 6px 15px;
             border-radius: 999px;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             opacity: 0;
             transition: opacity 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            backdrop-filter: blur(8px);
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.55);
         }
 
         .work-card:hover .zoom-hint {
@@ -361,16 +444,32 @@
         }
 
         .card-content {
-            padding: 28px 30px;
+            position: relative;
+            padding: 30px 32px 26px;
             flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-watermark {
+            position: absolute;
+            top: 18px;
+            right: 24px;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 3.4rem;
+            font-weight: 700;
+            line-height: 1;
+            color: rgba(197, 160, 89, 0.16);
+            pointer-events: none;
         }
 
         .card-content h3 {
+            font-family: 'Noto Serif TC', Georgia, serif;
             font-size: 1.28rem;
             color: var(--midnight);
             font-weight: 700;
             margin-bottom: 10px;
-            letter-spacing: 0.4px;
+            letter-spacing: 0.5px;
         }
 
         .card-meta {
@@ -386,22 +485,43 @@
         .card-content p {
             color: var(--text-secondary);
             font-size: 0.95rem;
-            line-height: 1.75;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        .card-footer-link {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid var(--hairline-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.86rem;
+            font-weight: 500;
+            color: var(--champagne-dark);
+            letter-spacing: 0.5px;
+        }
+
+        .work-card:hover .card-footer-link {
+            color: var(--midnight);
         }
 
         .bottom-action {
             text-align: center;
-            margin-top: 60px;
+            margin-top: 64px;
         }
 
-        /* Lightbox 燈箱樣式 */
+        /* =========================================
+           極致高透 Lightbox 燈箱視窗
+           ========================================= */
         .lightbox {
             display: none;
             position: fixed;
             inset: 0;
             z-index: 9999;
-            background-color: rgba(7, 14, 22, 0.92);
-            backdrop-filter: blur(8px);
+            background-color: rgba(7, 14, 22, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             justify-content: center;
             align-items: center;
             padding: 20px;
@@ -425,67 +545,74 @@
 
         .lightbox-container img {
             max-width: 100%;
-            max-height: 75vh;
-            border-radius: 10px;
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65);
+            max-height: 70vh;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
             object-fit: contain;
         }
 
         .lightbox-info {
             color: #ffffff;
             margin-top: 18px;
+            padding: 16px 26px;
+            border-radius: 14px;
+            display: inline-block;
+            max-width: 720px;
         }
 
         .lightbox-info h4 {
-            font-size: 1.25rem;
+            font-family: 'Noto Serif TC', Georgia, serif;
+            font-size: 1.26rem;
             margin-bottom: 6px;
             color: var(--champagne-light);
         }
 
         .lightbox-info p {
-            font-size: 0.95rem;
-            color: #cbd5e1;
-            max-width: 680px;
-            margin: 0 auto;
+            font-size: 0.94rem;
+            color: #e2e8f0;
+            line-height: 1.7;
         }
 
         .lb-close {
             position: fixed;
-            top: 20px;
-            right: 30px;
+            top: 22px;
+            right: 28px;
             color: #ffffff;
-            font-size: 2.6rem;
+            font-size: 2.2rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            line-height: 1;
             z-index: 10000;
-            transition: color 0.2s;
+            transition: all 0.2s;
         }
 
         .lb-close:hover {
-            color: var(--champagne-light);
+            border-color: #ffffff;
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .lb-nav {
             position: fixed;
             top: 50%;
             transform: translateY(-50%);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
             color: #ffffff;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             width: 48px;
             height: 48px;
             cursor: pointer;
             border-radius: 50%;
             transition: all 0.2s;
             z-index: 10000;
-            backdrop-filter: blur(8px);
         }
 
         .lb-nav:hover {
-            background: rgba(197, 160, 89, 0.35);
-            border-color: var(--champagne-light);
+            border-color: #ffffff;
+            background: rgba(255, 255, 255, 0.16);
         }
 
         .lb-prev { left: 24px; }
@@ -493,15 +620,15 @@
 
         @media (max-width: 600px) {
             .lb-nav {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
             }
             .lb-prev { left: 10px; }
             .lb-next { right: 10px; }
         }
 
-        /* 浮動極致透明玻璃「回到頂部」按鈕 */
+        /* 浮動極致高透玻璃「回到頂部」按鈕 */
         .back-to-top {
             position: fixed;
             bottom: 28px;
@@ -510,17 +637,18 @@
             width: 46px;
             height: 46px;
             border-radius: 50%;
-            background: linear-gradient(135deg, rgba(11, 22, 34, 0.72) 0%, rgba(11, 22, 34, 0.45) 100%);
-            border: 1px solid rgba(197, 160, 89, 0.6);
-            box-shadow: 0 8px 24px rgba(11, 22, 34, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-            color: var(--champagne-light);
-            font-size: 1rem;
+            background: linear-gradient(135deg, rgba(11, 22, 34, 0.45) 0%, rgba(11, 22, 34, 0.25) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            box-shadow: 0 8px 24px rgba(11, 22, 34, 0.22),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            color: #ffffff;
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(14px) saturate(160%);
+            -webkit-backdrop-filter: blur(14px) saturate(160%);
             opacity: 0;
             pointer-events: none;
             transform: translateY(15px);
@@ -535,113 +663,187 @@
 
         .back-to-top:hover {
             background: var(--midnight);
-            border-color: #ffffff;
-            color: #ffffff;
+            border-color: var(--champagne-light);
+            color: var(--champagne-light);
             transform: translateY(-3px);
         }
 
-        /* 頁尾 */
+        /* 頁尾（與首頁統一三欄結構） */
         footer {
             background-color: #070E16;
             color: #94a3b8;
+            padding: 58px 20px 32px;
+            margin-top: 84px;
+            border-top: 1px solid var(--hairline-gold);
+        }
+
+        .footer-grid {
+            max-width: 1140px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 36px;
+            padding-bottom: 36px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        footer h3, footer h4 {
+            font-family: 'Noto Serif TC', Georgia, serif;
+            color: #ffffff;
+            margin-bottom: 14px;
+            letter-spacing: 0.8px;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin-bottom: 9px;
+        }
+
+        footer a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: var(--champagne-light);
+        }
+
+        .copyright {
             text-align: center;
-            padding: 30px 20px;
-            margin-top: 80px;
-            font-size: 0.86rem;
-            border-top: 1px solid rgba(197, 160, 89, 0.2);
+            padding-top: 26px;
+            font-size: 0.84rem;
+            letter-spacing: 0.6px;
         }
     </style>
 </head>
 <body>
 
-    <!-- 頂部導覽列 -->
+    <!-- 頂部高透導覽列 -->
     <nav>
-        <a href="index.html" class="nav-brand">
-            <div class="nav-logo">TCU</div>
-            <div class="nav-title">
-                <h1>慈濟大學 經營管理學系</h1>
-                <p>Student Works Showcase</p>
-            </div>
-        </a>
-        <a href="index.html" class="glass-btn glass-btn-frosted btn-back-top">
-            <i class="fas fa-home"></i> 返回系所首頁
-        </a>
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <div class="nav-logo">TCU</div>
+                <div class="nav-title">
+                    <h1>慈濟大學 經營管理學系</h1>
+                    <p>Student Works Showcase</p>
+                </div>
+            </a>
+            <a href="index.html" class="glass-btn glass-btn-clear btn-back-top">
+                <i class="fas fa-home"></i> 返回系所首頁
+            </a>
+        </div>
     </nav>
 
-    <!-- 質感午夜墨藍橫幅區 -->
+    <!-- 實景攝影背景 ＋ 極致高透 iOS 玻璃策展橫幅 -->
     <header>
-        <div class="header-inner">
-            <div class="header-pill">
-                <i class="fas fa-award"></i> TCU BUSINESS MANAGEMENT SHOWCASE
-            </div>
+        <div class="header-glass-card ios-glass">
+            <div class="header-pill">TCU BUSINESS MANAGEMENT SHOWCASE</div>
             <h1>學生作品與學習成果展示</h1>
-            <p>紀錄經管系學子在文創商品開發、小組個案研討與系所環境中的實作點滴</p>
+            <p>紀錄經管系學子在文創商品開發、小組個案研討與系所環境中的實作點滴，展現做中學與跨域創新力</p>
             <div class="header-tags">
-                <span class="header-tag-item"><i class="fas fa-seedling"></i> 綠色文創實作</span>
-                <span class="header-tag-item"><i class="fas fa-door-open"></i> 系所行政中心</span>
-                <span class="header-tag-item"><i class="fas fa-comments"></i> 小組個案研討</span>
-                <span class="header-tag-item"><i class="fas fa-search-plus"></i> 點擊卡片可放大原圖</span>
+                <span class="header-tag-item ios-glass"><i class="fas fa-seedling"></i> 綠色文創實作</span>
+                <span class="header-tag-item ios-glass"><i class="fas fa-door-open"></i> 系所行政中心</span>
+                <span class="header-tag-item ios-glass"><i class="fas fa-comments"></i> 小組個案研討</span>
+                <span class="header-tag-item ios-glass"><i class="fas fa-search-plus"></i> 點擊卡片可放大原圖</span>
             </div>
         </div>
     </header>
 
-    <!-- 作品卡片區塊 -->
+    <!-- 作品策展區塊 -->
     <main class="reveal">
+        <!-- 分類篩選列 -->
+        <div class="filter-bar">
+            <div class="filter-title">
+                <i class="fas fa-layer-group" style="color:var(--champagne);"></i> 策展作品集錦
+            </div>
+            <div class="filter-tabs">
+                <button class="filter-btn active" onclick="filterWorks('all', this)">全部展示 (04)</button>
+                <button class="filter-btn" onclick="filterWorks('creative', this)">文創實作</button>
+                <button class="filter-btn" onclick="filterWorks('seminar', this)">專題研討</button>
+                <button class="filter-btn" onclick="filterWorks('campus', this)">系所與校園</button>
+            </div>
+        </div>
+
         <div class="cards-grid">
 
             <!-- 卡片 1：多肉植物創意盆栽 -->
-            <div class="work-card" onclick="openLightbox(0)">
+            <div class="work-card" data-category="creative" onclick="openLightbox(0)">
                 <div class="card-img-box">
                     <img alt="多肉植物創意盆栽文創作品" src="graph/1.JPG">
-                    <span class="card-badge">文創實作作品</span>
-                    <span class="zoom-hint"><i class="fas fa-search-plus"></i> 點擊放大</span>
+                    <span class="card-badge ios-glass">文創實作作品</span>
+                    <span class="zoom-hint ios-glass"><i class="fas fa-search-plus"></i> 點擊放大</span>
                 </div>
                 <div class="card-content">
+                    <span class="card-watermark">01</span>
                     <h3>綠色療癒與創意盆栽商品設計</h3>
                     <div class="card-meta"><i class="fas fa-seedling"></i> 經管系文創與行銷實作團隊</div>
                     <p>結合綠色永續概念與美學包裝設計，親手組合多肉植物與質感盆器，實踐商品企劃、成本定價與微型創業之實務應用。</p>
+                    <div class="card-footer-link">
+                        <span>檢視高解析原圖與詳情</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
                 </div>
             </div>
 
             <!-- 卡片 2：經營管理學系辦公室（系辦） -->
-            <div class="work-card" onclick="openLightbox(1)">
+            <div class="work-card" data-category="campus" onclick="openLightbox(1)">
                 <div class="card-img-box">
                     <img alt="慈濟大學經營管理學系辦公室" src="graph/2.JPG">
-                    <span class="card-badge">系所行政中心</span>
-                    <span class="zoom-hint"><i class="fas fa-search-plus"></i> 點擊放大</span>
+                    <span class="card-badge ios-glass">系所行政中心</span>
+                    <span class="zoom-hint ios-glass"><i class="fas fa-search-plus"></i> 點擊放大</span>
                 </div>
                 <div class="card-content">
+                    <span class="card-watermark">02</span>
                     <h3>經營管理學系辦公室（系辦）</h3>
                     <div class="card-meta"><i class="fas fa-door-open"></i> 經營管理學系行政服務窗口</div>
                     <p>提供學生課業諮詢、企業實習媒合、國際交換申請與專題行政支援，作為連結師生交流與系務運作的核心樞紐。</p>
+                    <div class="card-footer-link">
+                        <span>檢視高解析原圖與詳情</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
                 </div>
             </div>
 
             <!-- 卡片 3：師生小組圍坐討論 -->
-            <div class="work-card" onclick="openLightbox(2)">
+            <div class="work-card" data-category="seminar" onclick="openLightbox(2)">
                 <div class="card-img-box">
                     <img alt="學生小組專題研討與討論過程" src="graph/3.JPG">
-                    <span class="card-badge">小組專題研討</span>
-                    <span class="zoom-hint"><i class="fas fa-search-plus"></i> 點擊放大</span>
+                    <span class="card-badge ios-glass">小組專題研討</span>
+                    <span class="zoom-hint ios-glass"><i class="fas fa-search-plus"></i> 點擊放大</span>
                 </div>
                 <div class="card-content">
+                    <span class="card-watermark">03</span>
                     <h3>小組個案研討與專題共學實錄</h3>
                     <div class="card-meta"><i class="fas fa-users"></i> 經管系專題討論團隊</div>
                     <p>透過團隊圍坐討論與即時簡報分享，針對商業企劃與市場策略進行深度交流，展現經管系學子積極思辨與團隊協作的學習日常。</p>
+                    <div class="card-footer-link">
+                        <span>檢視高解析原圖與詳情</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
                 </div>
             </div>
 
             <!-- 卡片 4：紅瓦白牆校舍與背景山景 -->
-            <div class="work-card" onclick="openLightbox(3)">
+            <div class="work-card" data-category="campus" onclick="openLightbox(3)">
                 <div class="card-img-box">
                     <img alt="慈濟大學依山傍水校園建築景觀" src="graph/4.JPG">
-                    <span class="card-badge">校園環境特色</span>
-                    <span class="zoom-hint"><i class="fas fa-search-plus"></i> 點擊放大</span>
+                    <span class="card-badge ios-glass">校園環境特色</span>
+                    <span class="zoom-hint ios-glass"><i class="fas fa-search-plus"></i> 點擊放大</span>
                 </div>
                 <div class="card-content">
+                    <span class="card-watermark">04</span>
                     <h3>依山傍水之靜思人文校園景觀</h3>
                     <div class="card-meta"><i class="fas fa-mountain"></i> 慈濟大學校區環境</div>
                     <p>典雅的灰瓦白牆建築坐落於花蓮壯麗山巒環抱之中，提供兼具自然美景與現代化教學設備的優質學習殿堂。</p>
+                    <div class="card-footer-link">
+                        <span>檢視高解析原圖與詳情</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
                 </div>
             </div>
 
@@ -654,33 +856,59 @@
         </div>
     </main>
 
-    <!-- 浮動極致透明玻璃「回到頂部」按鈕 -->
+    <!-- 浮動極致高透玻璃「回到頂部」按鈕 -->
     <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="回到頁面頂部">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Lightbox 燈箱視窗 -->
+    <!-- 極致高透 Lightbox 燈箱視窗 -->
     <div id="lightbox" class="lightbox" onclick="closeOnBg(event)">
-        <span class="lb-close" onclick="closeLightbox()">&times;</span>
-        <button class="lb-nav lb-prev" onclick="changeSlide(-1)" aria-label="上一張">&#10094;</button>
+        <span class="lb-close ios-glass" onclick="closeLightbox()">&times;</span>
+        <button class="lb-nav ios-glass lb-prev" onclick="changeSlide(-1)" aria-label="上一張">&#10094;</button>
         
         <div class="lightbox-container">
             <img id="lb-img" src="" alt="作品大圖">
-            <div class="lightbox-info">
+            <br>
+            <div class="lightbox-info ios-glass">
                 <h4 id="lb-title"></h4>
                 <p id="lb-desc"></p>
             </div>
         </div>
 
-        <button class="lb-nav lb-next" onclick="changeSlide(1)" aria-label="下一張">&#10095;</button>
+        <button class="lb-nav ios-glass lb-next" onclick="changeSlide(1)" aria-label="下一張">&#10095;</button>
     </div>
 
-    <!-- 頁尾 -->
+    <!-- 頁尾（與首頁完全統一） -->
     <footer>
-        <p>© 2026 慈濟大學經營管理學系 版權所有 | Department of Business Management, TCU</p>
+        <div class="footer-grid">
+            <div>
+                <h3>慈濟大學 經營管理學系</h3>
+                <p>培育兼具人文大愛素養、商業決策能力與永續經營視野之商管人才。</p>
+            </div>
+            <div>
+                <h4>網站導覽</h4>
+                <ul>
+                    <li><a href="index.html">系所簡介首頁</a></li>
+                    <li><a href="studentworks.html">學生作品展覽頁</a></li>
+                    <li><a href="https://mdm.tcu.edu.tw/" target="_blank">慈大經管官方系網</a></li>
+                    <li><a href="https://www.tcu.edu.tw/" target="_blank">慈濟大學官網</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>產學與社群連結</h4>
+                <ul>
+                    <li><a href="https://www.youtube.com/@_tcust5687" target="_blank">YouTube 影音頻道</a></li>
+                    <li><a href="https://www.daait.com/" target="_blank">大愛感恩科技</a></li>
+                    <li><a href="https://www.jingsi.com/" target="_blank">靜思書軒</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2026 慈濟大學 經營管理學系 版權所有 | Department of Business Management, TCU.</p>
+        </div>
     </footer>
 
-    <!-- Lightbox 與捲動動畫控制腳本 -->
+    <!-- 互動腳本：分類篩選、Lightbox 與捲動動畫 -->
     <script>
         const cards = document.querySelectorAll('.work-card');
         const galleryItems = Array.from(cards).map(card => ({
@@ -688,6 +916,20 @@
             title: card.querySelector('h3').textContent,
             desc: card.querySelector('p').textContent
         }));
+
+        // 作品分類篩選
+        function filterWorks(category, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
 
         let currentIndex = 0;
         const lightbox = document.getElementById('lightbox');
@@ -732,7 +974,6 @@
             if (e.key === 'ArrowRight') changeSlide(1);
         });
 
-        // 捲動淡入動畫
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -745,7 +986,6 @@
 
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // 浮動回到頂部按鈕
         const backToTopBtn = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 350) {
