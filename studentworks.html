@@ -84,34 +84,36 @@
             border-color: #ffffff;
         }
 
-        /* 豐富層次感的深藍橫幅區 */
+        /* 質感深藍光影橫幅區 */
         header {
             position: relative;
-            background: radial-gradient(circle at 85% 20%, rgba(217, 130, 43, 0.18) 0%, transparent 45%),
-                        radial-gradient(circle at 15% 85%, rgba(56, 189, 248, 0.14) 0%, transparent 45%),
-                        linear-gradient(135deg, #102437 0%, #1d3c58 55%, #152e45 100%);
+            background: radial-gradient(circle at 80% 15%, rgba(217, 130, 43, 0.22) 0%, transparent 50%),
+                        radial-gradient(circle at 20% 85%, rgba(45, 108, 162, 0.35) 0%, transparent 55%),
+                        linear-gradient(135deg, #0e2235 0%, #193754 50%, #12293e 100%);
             color: #ffffff;
             text-align: center;
-            padding: 72px 20px 68px;
+            padding: 68px 20px 64px;
             overflow: hidden;
             border-bottom: 3px solid #d9822b;
         }
 
-        /* 橫幅背景微細網格紋理 */
+        /* 柔和斜向裝飾光帶 */
         header::before {
             content: "";
             position: absolute;
-            inset: 0;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 36px 36px;
+            top: -50%;
+            right: -10%;
+            width: 55%;
+            height: 200%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0) 100%);
+            transform: rotate(22deg);
             pointer-events: none;
         }
 
         .header-inner {
             position: relative;
             z-index: 1;
-            max-width: 820px;
+            max-width: 860px;
             margin: 0 auto;
         }
 
@@ -122,28 +124,27 @@
             background-color: rgba(217, 130, 43, 0.16);
             border: 1px solid rgba(245, 158, 11, 0.45);
             color: #fbbf24;
-            padding: 6px 16px;
+            padding: 6px 18px;
             border-radius: 30px;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 500;
             letter-spacing: 1.5px;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         header h1 {
-            font-size: 2.35rem;
+            font-size: 2.3rem;
             font-weight: 700;
             margin-bottom: 14px;
             letter-spacing: 1.5px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
         }
 
         header p {
             font-size: 1.05rem;
             color: #cbd5e1;
-            max-width: 680px;
+            max-width: 760px;
             margin: 0 auto 28px;
-            line-height: 1.75;
+            line-height: 1.7;
         }
 
         /* 橫幅下方特色小標籤列 */
@@ -155,15 +156,16 @@
         }
 
         .header-tag-item {
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            color: #e2e8f0;
-            padding: 6px 14px;
-            border-radius: 8px;
-            font-size: 0.85rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: #f1f5f9;
+            padding: 7px 16px;
+            border-radius: 20px;
+            font-size: 0.86rem;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 7px;
+            backdrop-filter: blur(4px);
         }
 
         .header-tag-item i {
@@ -448,18 +450,19 @@
         </a>
     </nav>
 
-    <!-- 豐富層次感的深藍橫幅區 -->
+    <!-- 質感深藍光影橫幅區 -->
     <header>
         <div class="header-inner">
             <div class="header-pill">
                 <i class="fas fa-award"></i> TCU BUSINESS MANAGEMENT SHOWCASE
             </div>
             <h1>學生作品與學習成果展示</h1>
-            <p>紀錄經管系學子在文創商品開發、小組個案研討與人文校園場域中的實作點滴（點擊任一圖片可放大檢視原圖）</p>
+            <p>紀錄經管系學子在文創商品開發、小組個案研討與系所環境中的實作點滴</p>
             <div class="header-tags">
                 <span class="header-tag-item"><i class="fas fa-seedling"></i> 綠色文創實作</span>
+                <span class="header-tag-item"><i class="fas fa-door-open"></i> 系所行政中心</span>
                 <span class="header-tag-item"><i class="fas fa-comments"></i> 小組個案研討</span>
-                <span class="header-tag-item"><i class="fas fa-university"></i> 人文學習空間</span>
+                <span class="header-tag-item"><i class="fas fa-search-plus"></i> 點擊卡片可放大原圖</span>
             </div>
         </div>
     </header>
