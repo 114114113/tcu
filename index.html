@@ -24,6 +24,7 @@
             background-color: #f4f6f9;
             color: #1e293b;
             line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* 頂部深藍導覽列 */
@@ -80,7 +81,7 @@
             list-style: none;
             display: flex;
             align-items: center;
-            gap: 22px;
+            gap: 24px;
             flex-wrap: wrap;
         }
 
@@ -110,11 +111,11 @@
         }
 
         /* =========================================
-           Hero Image + Carousel 輪播區塊樣式
+           Hero Image + Carousel 輪播區塊樣式（優化字體比例與排版）
            ========================================= */
         .hero-carousel {
             position: relative;
-            min-height: 520px;
+            min-height: 540px;
             display: flex;
             align-items: center;
             color: #ffffff;
@@ -123,7 +124,6 @@
             background-color: #0e2235;
         }
 
-        /* 輪播圖片層容器 */
         .hero-slides {
             position: absolute;
             inset: 0;
@@ -145,52 +145,58 @@
             transform: scale(1);
         }
 
-        /* 深海藍漸層閱讀遮罩（確保背景換圖時文字依然清晰） */
         .hero-overlay {
             position: absolute;
             inset: 0;
             z-index: 2;
-            background: linear-gradient(135deg, rgba(14, 34, 53, 0.88) 0%, rgba(25, 55, 84, 0.72) 60%, rgba(14, 34, 53, 0.55) 100%);
+            background: linear-gradient(125deg, rgba(12, 30, 48, 0.9) 0%, rgba(22, 50, 77, 0.76) 55%, rgba(12, 30, 48, 0.55) 100%);
         }
 
-        /* 前景文字內容 */
         .hero-inner {
             position: relative;
             z-index: 3;
             max-width: 1140px;
             width: 100%;
             margin: 0 auto;
-            padding: 90px 60px;
+            padding: 95px 60px;
         }
 
         .hero-badge {
-            display: inline-block;
-            background-color: rgba(217, 130, 43, 0.22);
-            border: 1px solid rgba(245, 158, 11, 0.55);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(217, 130, 43, 0.18);
+            border: 1px solid rgba(245, 158, 11, 0.5);
             color: #fbbf24;
-            padding: 5px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin-bottom: 18px;
-            letter-spacing: 1px;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.84rem;
+            font-weight: 500;
+            margin-bottom: 22px;
+            letter-spacing: 1.5px;
             backdrop-filter: blur(4px);
         }
 
+        /* 優化後的主標題字體：字距更舒展、兩行對稱平衡 */
         .hero-carousel h1 {
-            font-size: 2.5rem;
+            font-size: 2.65rem;
             font-weight: 700;
-            max-width: 780px;
-            line-height: 1.35;
-            margin-bottom: 18px;
-            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+            line-height: 1.42;
+            letter-spacing: 1.8px;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 0 2px 14px rgba(0, 0, 0, 0.3);
         }
 
+        /* 優化後的副標題字體：輕盈細緻、閱讀寬度適中 */
         .hero-carousel p {
-            font-size: 1.08rem;
-            color: #e2e8f0;
-            max-width: 680px;
-            margin-bottom: 32px;
-            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+            font-size: 1.05rem;
+            font-weight: 300;
+            line-height: 1.85;
+            letter-spacing: 0.6px;
+            color: #dbeafe;
+            max-width: 600px;
+            margin-bottom: 36px;
         }
 
         .hero-actions {
@@ -203,9 +209,11 @@
             background-color: #d9822b;
             color: #ffffff;
             text-decoration: none;
-            padding: 12px 26px;
+            padding: 13px 28px;
             border-radius: 30px;
+            font-size: 0.95rem;
             font-weight: 500;
+            letter-spacing: 0.5px;
             transition: background-color 0.3s, transform 0.2s;
             display: inline-flex;
             align-items: center;
@@ -218,13 +226,15 @@
         }
 
         .btn-outline {
-            background-color: rgba(255, 255, 255, 0.12);
+            background-color: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.4);
             color: #ffffff;
             text-decoration: none;
-            padding: 12px 26px;
+            padding: 13px 28px;
             border-radius: 30px;
+            font-size: 0.95rem;
             font-weight: 500;
+            letter-spacing: 0.5px;
             transition: all 0.3s;
             display: inline-flex;
             align-items: center;
@@ -233,7 +243,7 @@
         }
 
         .btn-outline:hover {
-            background-color: rgba(255, 255, 255, 0.25);
+            background-color: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
         }
 
@@ -269,7 +279,7 @@
         /* 底部圓點指示器 */
         .carousel-dots {
             position: absolute;
-            bottom: 22px;
+            bottom: 24px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 4;
@@ -299,6 +309,10 @@
             }
             .hero-carousel h1 {
                 font-size: 1.9rem;
+                letter-spacing: 1px;
+            }
+            .hero-carousel h1 br {
+                display: none;
             }
             .carousel-arrow {
                 width: 36px;
@@ -456,36 +470,6 @@
             font-size: 0.92rem;
         }
 
-        /* 專業教室與校園場域展示 */
-        .facility-card {
-            background: #ffffff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
-        }
-
-        .facility-card img {
-            width: 100%;
-            height: 210px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .facility-body {
-            padding: 20px;
-        }
-
-        .facility-body h3 {
-            color: #0f2537;
-            font-size: 1.15rem;
-            margin-bottom: 8px;
-        }
-
-        .facility-body p {
-            color: #475569;
-            font-size: 0.92rem;
-        }
-
         /* 聯絡我們區塊（右側放系辦照片 graph/2.JPG） */
         .contact-grid {
             display: grid;
@@ -609,7 +593,6 @@
                     <li><a href="#about">系所簡介</a></li>
                     <li><a href="#features">本系特色</a></li>
                     <li><a href="#curriculum">課程規劃</a></li>
-                    <li><a href="#facilities">學習環境</a></li>
                     <li><a href="#contact">聯絡我們</a></li>
                     <li><a href="studentworks.html" class="nav-btn-works"><i class="fas fa-images"></i> 學生作品</a></li>
                 </ul>
@@ -617,25 +600,14 @@
         </div>
     </header>
 
-    <!-- =================================================================
-         主視覺 Hero Image + Carousel 輪播區
-         【日後新增照片教學】：只要在下面 <div class="hero-slides"> 裡面
-         複製貼上一行 <div class="hero-slide" style="background-image: url('graph/你的檔名.jpg');"></div>
-         底部圓點與自動輪播會自動偵測數量，不需要修改任何其他地方！
-         ================================================================= -->
+    <!-- 主視覺 Hero Image + Carousel 輪播區 -->
     <div class="hero-carousel" id="heroCarousel">
-        <!-- 輪播照片清單 -->
+        <!-- 輪播照片清單（日後新增照片只需在這裡複製貼上一行即可） -->
         <div class="hero-slides">
-            <!-- 第 1 張：系辦照片 -->
             <div class="hero-slide active" style="background-image: url('graph/2.JPG');"></div>
-            <!-- 第 2 張：新增的 5.jpg 照片 -->
             <div class="hero-slide" style="background-image: url('graph/5.jpg');"></div>
-            <!-- 未來要加第 3 張、第 4 張照片，直接往下貼上即可，例如：
-            <div class="hero-slide" style="background-image: url('graph/6.jpg');"></div>
-            -->
         </div>
 
-        <!-- 深海藍漸層遮罩 -->
         <div class="hero-overlay"></div>
 
         <!-- 左右切換箭頭 -->
@@ -646,10 +618,10 @@
             <i class="fas fa-chevron-right"></i>
         </button>
 
-        <!-- 前景核心標語與按鈕 -->
+        <!-- 前景核心標語與按鈕（已優化兩行對稱字體排版） -->
         <div class="hero-inner">
-            <span class="hero-badge">慈濟大學經營管理學系</span>
-            <h1>培育具社會責任、國際視野與創新思維之商管人才</h1>
+            <span class="hero-badge"><i class="fas fa-compass"></i> 慈濟大學經營管理學系</span>
+            <h1>培育具社會責任、國際視野<br>與創新思維之商管人才</h1>
             <p>結合實務個案教學、智慧零售實習場域、企業永續發展（ESG）與國際交流，為您打造接軌全球商業舞台的關鍵競爭力。</p>
             <div class="hero-actions">
                 <a href="#about" class="btn-primary">探索本系 <i class="fas fa-arrow-down"></i></a>
@@ -657,7 +629,7 @@
             </div>
         </div>
 
-        <!-- 底部指示圓點（由 JS 自動根據照片數量生成） -->
+        <!-- 底部指示圓點 -->
         <div class="carousel-dots" id="heroDots"></div>
     </div>
 
@@ -756,42 +728,8 @@
         </div>
     </section>
 
-    <!-- 學習場域與系所環境 -->
-    <section id="facilities" class="bg-white">
-        <div class="container">
-            <div class="section-header">
-                <span>LEARNING ENVIRONMENT</span>
-                <h2>系所環境與學習實景</h2>
-                <p>結合人文建築景觀、行政服務窗口與互動研討空間</p>
-            </div>
-            <div class="grid-3">
-                <div class="facility-card">
-                    <img alt="經營管理學系辦公室" src="graph/2.JPG">
-                    <div class="facility-body">
-                        <h3>經營管理學系辦公室</h3>
-                        <p>提供課業諮詢、企業實習媒合與行政支援，作為連結師生交流的核心窗口。</p>
-                    </div>
-                </div>
-                <div class="facility-card">
-                    <img alt="小組專題研討空間" src="graph/3.JPG">
-                    <div class="facility-body">
-                        <h3>小組專題與個案研討空間</h3>
-                        <p>彈性多元的討論空間，支持團隊腦力激盪、商業企劃發表與師生深度共學。</p>
-                    </div>
-                </div>
-                <div class="facility-card">
-                    <img alt="慈濟大學校園環境" src="graph/4.JPG">
-                    <div class="facility-body">
-                        <h3>依山傍水之人文校園</h3>
-                        <p>典雅的灰瓦白牆校舍坐落於花蓮山巒環抱中，營造沉穩優質的學術殿堂。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- 聯絡我們（右側展示系辦照片 graph/2.JPG） -->
-    <section id="contact">
+    <section id="contact" class="bg-white">
         <div class="container">
             <div class="section-header">
                 <span>CONTACT US</span>
@@ -844,7 +782,6 @@
         let heroIndex = 0;
         let heroTimer;
 
-        // 根據照片數量自動產生底部圓點
         heroSlides.forEach((_, idx) => {
             const dot = document.createElement('button');
             dot.classList.add('carousel-dot');
@@ -881,7 +818,7 @@
             heroTimer = setInterval(() => {
                 heroIndex = (heroIndex + 1) % heroSlides.length;
                 updateHeroCarousel();
-            }, 5000); // 每 5 秒自動切換下一張
+            }, 5000);
         }
 
         function resetHeroTimer() {
