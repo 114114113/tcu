@@ -1,235 +1,154 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>學生作品展覽 | 慈濟大學 經營管理學系</title>
-    <!-- Google Fonts & Font Awesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    /* 讓卡片有可點擊的手指游標與微幅互動感 */
+    main > div:first-child > div {
+        cursor: pointer;
+    }
 
-    <style>
-        :root {
-            --primary-navy: #0f2b48;
-            --primary-dark: #0a1c30;
-            --accent-gold: #d97706;
-            --accent-gold-hover: #b45309;
-            --bg-light: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --border-color: #e2e8f0;
-            --shadow-md: 0 4px 20px -2px rgba(0,0,0,0.08);
-            --shadow-lg: 0 12px 30px -5px rgba(0,0,0,0.15);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+    /* Lightbox 燈箱黑底遮罩 */
+    .lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background-color: rgba(0, 0, 0, 0.88);
+        backdrop-filter: blur(4px);
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background-color: var(--bg-light); color: var(--text-main); line-height: 1.7; }
+    .lightbox.active {
+        display: flex;
+    }
 
-        /* 頂部導覽列 */
-        .navbar {
-            position: fixed; top: 0; left: 0; width: 100%;
-            background: rgba(15, 43, 72, 0.96); backdrop-filter: blur(12px);
-            z-index: 1000; padding: 0.9rem 5%;
-            display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        }
+    .lightbox-container {
+        max-width: 90%;
+        max-height: 85vh;
+        text-align: center;
+    }
 
-        .nav-brand {
-            display: flex; align-items: center; gap: 12px;
-            text-decoration: none; color: #fff;
-        }
+    .lightbox-container img {
+        max-width: 100%;
+        max-height: 75vh;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        object-fit: contain;
+    }
 
-        .brand-badge {
-            width: 38px; height: 38px;
-            background: linear-gradient(135deg, var(--accent-gold), #f59e0b);
-            border-radius: 8px; display: flex; align-items: center; justify-content: center;
-            color: #fff; font-weight: 800; font-size: 1.1rem;
-        }
+    .lightbox-info {
+        color: #ffffff;
+        margin-top: 15px;
+    }
 
-        .btn-back-home {
-            background: rgba(255,255,255,0.15); color: #fff;
-            padding: 8px 20px; border-radius: 50px;
-            text-decoration: none; font-weight: 600; font-size: 0.9rem;
-            transition: var(--transition); border: 1px solid rgba(255,255,255,0.3);
-            display: inline-flex; align-items: center; gap: 8px;
-        }
+    .lightbox-info h4 {
+        font-size: 1.25rem;
+        margin-bottom: 5px;
+    }
 
-        .btn-back-home:hover {
-            background: var(--accent-gold); border-color: var(--accent-gold);
-            transform: translateY(-2px);
-        }
+    .lightbox-info p {
+        font-size: 0.95rem;
+        color: #ced4da;
+    }
 
-        /* Header Banner */
-        .page-header {
-            margin-top: 70px;
-            background: linear-gradient(135deg, rgba(15,43,72,0.92), rgba(10,28,48,0.88)), url('space.JPG') center/cover no-repeat;
-            color: #fff; padding: 5rem 5% 4rem; text-align: center;
-        }
+    .lb-close {
+        position: fixed;
+        top: 20px;
+        right: 30px;
+        color: #ffffff;
+        font-size: 2.5rem;
+        cursor: pointer;
+        line-height: 1;
+        z-index: 10000;
+    }
 
-        .page-title { font-size: 2.4rem; font-weight: 800; margin-bottom: 0.8rem; }
-        .page-desc { color: rgba(255,255,255,0.85); font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
+    .lb-nav {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.15);
+        color: #ffffff;
+        border: none;
+        font-size: 1.8rem;
+        padding: 12px 18px;
+        cursor: pointer;
+        border-radius: 8px;
+        z-index: 10000;
+    }
 
-        .container { max-width: 1280px; margin: 0 auto; padding: 4rem 5%; }
+    .lb-nav:hover {
+        background: rgba(255, 255, 255, 0.35);
+    }
 
-        /* 作品卡片網格（四張卡片在寬螢幕呈現對稱 2x2 排版） */
-        .works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(460px, 1fr)); gap: 2.5rem; }
-        @media (max-width: 600px) {
-            .works-grid { grid-template-columns: 1fr; }
-        }
+    .lb-prev { left: 20px; }
+    .lb-next { right: 20px; }
+</style>
 
-        .work-card {
-            background: var(--card-bg); border-radius: 16px; overflow: hidden;
-            box-shadow: var(--shadow-md); border: 1px solid var(--border-color);
-            transition: var(--transition);
-        }
-        .work-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: rgba(217,119,6,0.4); }
-
-        /* 外框固定 280px 高度 */
-        .work-media { 
-            position: relative; 
-            width: 100%; 
-            height: 280px;
-            background: #f1f5f9; 
-            overflow: hidden;
-        }
-        
-        /* 圖片 Cover 滿版鋪滿，不留白邊 */
-        .work-media img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover;
-            object-position: center;
-            display: block;
-            transition: transform 0.5s ease; 
-        }
-        
-        .work-card:hover .work-media img { transform: scale(1.05); }
-
-        .work-tag {
-            position: absolute; top: 14px; right: 14px;
-            background: rgba(15, 43, 72, 0.88); color: #fef08a;
-            border: 1px solid rgba(217, 119, 6, 0.4); font-size: 0.8rem;
-            padding: 4px 12px; border-radius: 20px; backdrop-filter: blur(4px); font-weight: 600;
-            z-index: 2;
-        }
-
-        .work-body { padding: 1.8rem; }
-        .work-title { font-size: 1.25rem; color: var(--primary-navy); margin-bottom: 0.6rem; font-weight: 700; }
-        .work-author { font-size: 0.9rem; color: var(--accent-gold); margin-bottom: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 6px; }
-        .work-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
-
-        .btn-bottom-home {
-            background: var(--primary-navy); color: #fff;
-            padding: 14px 32px; border-radius: 50px; text-decoration: none;
-            font-weight: 700; font-size: 1rem; transition: var(--transition);
-            display: inline-flex; align-items: center; gap: 10px;
-            box-shadow: var(--shadow-md); border: 1px solid rgba(15, 43, 72, 0.1);
-        }
-
-        .btn-bottom-home:hover {
-            background: var(--accent-gold); transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(217,119,6,0.35);
-        }
-
-        footer {
-            background: var(--primary-dark); color: rgba(255,255,255,0.6);
-            text-align: center; padding: 2.5rem; font-size: 0.9rem; margin-top: 4rem;
-            border-top: 1px solid rgba(255,255,255,0.08);
-        }
-    </style>
-</head>
-<body>
-
-    <!-- 頂部導覽列 -->
-    <nav class="navbar">
-        <a href="index.html" class="nav-brand">
-            <div class="brand-badge">TCU</div>
-            <div>
-                <h1 style="font-size: 1.15rem; font-weight: 800;">慈濟大學 經營管理學系</h1>
-                <p style="font-size: 0.72rem; color: rgba(255,255,255,0.65);">Student Works Showcase</p>
-            </div>
-        </a>
-        <a href="index.html" class="btn-back-home"><i class="fa-solid fa-house"></i> 返回系所首頁</a>
-    </nav>
-
-    <!-- Header Banner -->
-    <header class="page-header">
-        <h1 class="page-title">學生作品與學習成果展示</h1>
-        <p class="page-desc">展示經管系學生在專題實作、行銷企劃與團隊合作中的學習點滴與優秀成果</p>
-    </header>
-
-    <!-- 展示卡片區域 -->
-    <main class="container">
-        <div class="works-grid">
-
-            <!-- 卡片 1：work.JPG -->
-            <div class="work-card">
-                <div class="work-media">
-                    <img src="work.JPG" alt="學生實作作品照片" onerror="this.src='https://placehold.co/600x400/0f2b48/ffffff?text=Student+Work'">
-                    <span class="work-tag">學生作品成果</span>
-                </div>
-                <div class="work-body">
-                    <h3 class="work-title">經營管理專題實作成果展示</h3>
-                    <div class="work-author"><i class="fa-solid fa-user-graduate"></i> 經管系學生專案團隊</div>
-                    <p class="work-desc">結合課程所學之管理理論與實務應用，展現學生在專案規劃、團隊合作與創新思維上的精彩成果。</p>
-                </div>
-            </div>
-
-            <!-- 卡片 2：group.JPG -->
-            <div class="work-card">
-                <div class="work-media">
-                    <img src="group.JPG" alt="學生團隊與團隊合作歷程" onerror="this.src='https://placehold.co/600x400/0f2b48/ffffff?text=Team+Group'">
-                    <span class="work-tag">團隊實務合作</span>
-                </div>
-                <div class="work-body">
-                    <h3 class="work-title">團隊競賽與學習歷程紀錄</h3>
-                    <div class="work-author"><i class="fa-solid fa-users"></i> 經管系學生團隊</div>
-                    <p class="work-desc">紀錄學生參與專題研討、商業競賽與跨領域團隊合作之學習點滴與默契展現。</p>
-                </div>
-            </div>
-
-            <!-- 卡片 3：4.JPG（新增上傳的照片） -->
-            <div class="work-card">
-                <div class="work-media">
-                    <img src="4.JPG" alt="學生課程實務與專題發表" onerror="this.src='https://placehold.co/600x400/0f2b48/ffffff?text=Project+Showcase'">
-                    <span class="work-tag">課程實務應用</span>
-                </div>
-                <div class="work-body">
-                    <h3 class="work-title">商業企劃與課程實作成果</h3>
-                    <div class="work-author"><i class="fa-solid fa-lightbulb"></i> 經管系實作課程團隊</div>
-                    <p class="work-desc">透過實地調研與個案分析，將創意構想轉化為具體可行的商業企劃與管理解決方案。</p>
-                </div>
-            </div>
-
-            <!-- 卡片 4：space.JPG -->
-            <div class="work-card">
-                <div class="work-media">
-                    <img src="space.JPG" alt="系辦與教學場域照片" onerror="this.src='https://placehold.co/600x400/0f2b48/ffffff?text=Department+Space'">
-                    <span class="work-tag">系所學習空間</span>
-                </div>
-                <div class="work-body">
-                    <h3 class="work-title">系所教學與學習研討空間</h3>
-                    <div class="work-author"><i class="fa-solid fa-building-columns"></i> 經營管理學系</div>
-                    <p class="work-desc">提供學生舒適且現代化的研討與學習環境，支援個案討論、專題研討與師生交流互動。</p>
-                </div>
-            </div>
-
+<div id="lightbox" class="lightbox" onclick="closeOnBg(event)">
+    <span class="lb-close" onclick="closeLightbox()">&times;</span>
+    <button class="lb-nav lb-prev" onclick="changeSlide(-1)" aria-label="上一張">&#10094;</button>
+    
+    <div class="lightbox-container">
+        <img id="lb-img" src="" alt="作品大圖">
+        <div class="lightbox-info">
+            <h4 id="lb-title"></h4>
+            <p id="lb-desc"></p>
         </div>
+    </div>
 
-        <!-- 底部返回首頁按鈕 -->
-        <div style="text-align: center; margin-top: 4rem;">
-            <a href="index.html" class="btn-bottom-home">
-                <i class="fa-solid fa-arrow-left"></i> 返回慈濟經管系簡介首頁
-            </a>
-        </div>
-    </main>
+    <button class="lb-nav lb-next" onclick="changeSlide(1)" aria-label="下一張">&#10095;</button>
+</div>
 
-    <!-- 頁尾 -->
-    <footer>
-        <p>&copy; 2026 慈濟大學經營管理學系 版權所有 | Department of Business Management, TCU</p>
-    </footer>
+<script>
+    const cardContainers = document.querySelectorAll('main > div:first-child > div');
+    const galleryItems = Array.from(cardContainers).map((card, index) => {
+        card.addEventListener('click', () => openLightbox(index));
+        return {
+            src: card.querySelector('img') ? card.querySelector('img').getAttribute('src') : '',
+            title: card.querySelector('h3') ? card.querySelector('h3').textContent : '',
+            desc: card.querySelector('p') ? card.querySelector('p').textContent : ''
+        };
+    });
 
-</body>
-</html>
+    let currentIndex = 0;
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const lbTitle = document.getElementById('lb-title');
+    const lbDesc = document.getElementById('lb-desc');
+
+    function openLightbox(index) {
+        currentIndex = index;
+        updateLightbox();
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    function closeOnBg(event) {
+        if (event.target === lightbox) {
+            closeLightbox();
+        }
+    }
+
+    function changeSlide(step) {
+        currentIndex = (currentIndex + step + galleryItems.length) % galleryItems.length;
+        updateLightbox();
+    }
+
+    function updateLightbox() {
+        const item = galleryItems[currentIndex];
+        lbImg.src = item.src;
+        lbTitle.textContent = item.title;
+        lbDesc.textContent = item.desc;
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') changeSlide(-1);
+        if (e.key === 'ArrowRight') changeSlide(1);
+    });
+</script>
