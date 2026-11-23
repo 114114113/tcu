@@ -181,11 +181,11 @@
         }
 
         /* =========================================
-           Hero Image + Carousel 輪播區塊樣式
+           Full-Screen Background + Carousel 滿版輪播區塊
            ========================================= */
         .hero-carousel {
             position: relative;
-            min-height: 580px;
+            min-height: calc(100vh - 76px);
             display: flex;
             align-items: center;
             color: #ffffff;
@@ -218,7 +218,7 @@
             position: absolute;
             inset: 0;
             z-index: 2;
-            background: linear-gradient(125deg, rgba(10, 26, 42, 0.9) 0%, rgba(20, 46, 72, 0.72) 55%, rgba(10, 26, 42, 0.45) 100%);
+            background: linear-gradient(125deg, rgba(10, 26, 42, 0.88) 0%, rgba(20, 46, 72, 0.68) 55%, rgba(10, 26, 42, 0.42) 100%);
         }
 
         .hero-inner {
@@ -227,7 +227,7 @@
             max-width: 1140px;
             width: 100%;
             margin: 0 auto;
-            padding: 95px 60px 125px;
+            padding: 80px 60px;
         }
 
         .hero-badge {
@@ -249,23 +249,23 @@
         }
 
         .hero-carousel h1 {
-            font-size: 2.75rem;
+            font-size: 2.85rem;
             font-weight: 700;
             line-height: 1.4;
             letter-spacing: 1.8px;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             color: #ffffff;
             text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
         }
 
         .hero-carousel p {
-            font-size: 1.06rem;
+            font-size: 1.08rem;
             font-weight: 300;
             line-height: 1.85;
             letter-spacing: 0.6px;
             color: #e2e8f0;
             max-width: 620px;
-            margin-bottom: 36px;
+            margin-bottom: 38px;
         }
 
         .hero-actions {
@@ -277,7 +277,7 @@
         /* 左右極致透明玻璃切換箭頭按鈕 */
         .carousel-arrow {
             position: absolute;
-            top: 46%;
+            top: 50%;
             transform: translateY(-50%);
             z-index: 4;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%);
@@ -303,19 +303,19 @@
             transform: translateY(-50%) scale(1.06);
         }
 
-        .carousel-prev { left: 20px; }
-        .carousel-next { right: 20px; }
+        .carousel-prev { left: 24px; }
+        .carousel-next { right: 24px; }
 
         /* 底部圓點指示器 */
         .carousel-dots {
             position: absolute;
-            bottom: 58px;
+            bottom: 32px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 4;
             display: flex;
             gap: 10px;
-            padding: 6px 12px;
+            padding: 6px 14px;
             border-radius: 20px;
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.22);
@@ -339,30 +339,30 @@
         }
 
         /* =========================================
-           懸浮數據亮點列（Floating Glass Stats Bar）
+           數據亮點列（已往下移，獨立呈現在滿版主視覺下方）
            ========================================= */
         .stats-wrapper {
             position: relative;
             z-index: 10;
             max-width: 1140px;
-            margin: -42px auto 0;
+            margin: 36px auto 0;
             padding: 0 20px;
         }
 
         .stats-bar {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255, 255, 255, 0.96);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.9);
+            border: 1px solid #e2e8f0;
             border-radius: 16px;
-            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.09);
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
             overflow: hidden;
         }
 
         .stat-item {
-            padding: 24px 20px;
+            padding: 26px 20px;
             text-align: center;
             border-right: 1px solid #e2e8f0;
             transition: background-color 0.3s;
@@ -377,10 +377,10 @@
         }
 
         .stat-num {
-            font-size: 1.45rem;
+            font-size: 1.42rem;
             font-weight: 700;
             color: #13293d;
-            margin-bottom: 4px;
+            margin-bottom: 5px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -389,7 +389,7 @@
 
         .stat-num i {
             color: #d9822b;
-            font-size: 1.2rem;
+            font-size: 1.18rem;
         }
 
         .stat-label {
@@ -412,11 +412,14 @@
         }
 
         @media (max-width: 768px) {
+            .hero-carousel {
+                min-height: calc(100vh - 70px);
+            }
             .hero-inner {
-                padding: 75px 24px 100px;
+                padding: 60px 24px 80px;
             }
             .hero-carousel h1 {
-                font-size: 1.9rem;
+                font-size: 1.95rem;
                 letter-spacing: 1px;
             }
             .hero-carousel h1 br {
@@ -433,7 +436,7 @@
 
         /* 通用區塊容器 */
         section {
-            padding: 76px 20px;
+            padding: 72px 20px;
         }
 
         .container {
@@ -814,7 +817,7 @@
         </div>
     </header>
 
-    <!-- 主視覺 Hero Image + Carousel 輪播區 -->
+    <!-- Full-Screen Background 主視覺輪播區 -->
     <div class="hero-carousel" id="heroCarousel">
         <div class="hero-slides">
             <div class="hero-slide active" style="background-image: url('graph/2.JPG');"></div>
@@ -847,7 +850,7 @@
         <div class="carousel-dots" id="heroDots"></div>
     </div>
 
-    <!-- 懸浮數據亮點列（Floating Glass Stats Bar） -->
+    <!-- 數據亮點列（已往下移至滿版主視覺下方） -->
     <div class="stats-wrapper">
         <div class="stats-bar">
             <div class="stat-item">
@@ -907,7 +910,7 @@
         </div>
     </section>
 
-    <!-- 本系四大特色（結合系網真實教學亮點） -->
+    <!-- 本系四大特色 -->
     <section id="features" class="bg-white">
         <div class="container">
             <div class="section-header">
@@ -968,7 +971,7 @@
         </div>
     </section>
 
-    <!-- 近期榮譽與升學實績（參考官方系網真實成果） -->
+    <!-- 近期榮譽與升學實績 -->
     <section id="honors" class="honors-section">
         <div class="container">
             <div class="section-header">
