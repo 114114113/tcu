@@ -27,9 +27,91 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* =========================================
+           iPhone / iOS 液態毛玻璃按鈕系統
+           ========================================= */
+        .glass-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px 28px;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+        }
+
+        /* 暖橘琥珀玻璃按鈕（主按鈕） */
+        .glass-btn-amber {
+            background: linear-gradient(135deg, rgba(235, 148, 54, 0.72) 0%, rgba(205, 114, 24, 0.58) 100%);
+            border: 1px solid rgba(255, 224, 178, 0.48);
+            color: #ffffff;
+            box-shadow: 0 8px 24px rgba(217, 130, 43, 0.28),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.55);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+        }
+
+        .glass-btn-amber:hover {
+            background: linear-gradient(135deg, rgba(245, 158, 66, 0.85) 0%, rgba(217, 125, 32, 0.75) 100%);
+            border-color: rgba(255, 255, 255, 0.75);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(217, 130, 43, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        }
+
+        .glass-btn-amber:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* 晶透白霜玻璃按鈕（次按鈕，適合深色背景） */
+        .glass-btn-frosted {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.08) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.36);
+            color: #ffffff;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.45);
+        }
+
+        .glass-btn-frosted:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.16) 100%);
+            border-color: rgba(255, 255, 255, 0.7);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.65);
+        }
+
+        .glass-btn-frosted:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* 深海藍玻璃按鈕（適合淺色白底區塊） */
+        .glass-btn-navy {
+            background: linear-gradient(135deg, rgba(19, 41, 61, 0.88) 0%, rgba(30, 63, 92, 0.78) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+            box-shadow: 0 8px 22px rgba(19, 41, 61, 0.2),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+        }
+
+        .glass-btn-navy:hover {
+            background: linear-gradient(135deg, rgba(25, 55, 84, 0.95) 0%, rgba(39, 80, 117, 0.88) 100%);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 12px 28px rgba(19, 41, 61, 0.3),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        }
+
         /* 頂部深藍導覽列 */
         header {
-            background-color: #13293d;
+            background-color: rgba(19, 41, 61, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             padding: 15px 6%;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             position: sticky;
@@ -98,20 +180,13 @@
         }
 
         .nav-btn-works {
-            background-color: rgba(217, 130, 43, 0.18);
-            border: 1px solid rgba(245, 158, 11, 0.55);
-            color: #fbbf24 !important;
-            padding: 6px 15px;
-            border-radius: 20px;
-        }
-
-        .nav-btn-works:hover {
-            background-color: #d9822b;
-            color: #ffffff !important;
+            padding: 7px 17px !important;
+            font-size: 0.88rem !important;
+            color: #fde68a !important;
         }
 
         /* =========================================
-           Hero Image + Carousel 輪播區塊樣式（優化字體比例與排版）
+           Hero Image + Carousel 輪播區塊樣式
            ========================================= */
         .hero-carousel {
             position: relative;
@@ -149,7 +224,7 @@
             position: absolute;
             inset: 0;
             z-index: 2;
-            background: linear-gradient(125deg, rgba(12, 30, 48, 0.9) 0%, rgba(22, 50, 77, 0.76) 55%, rgba(12, 30, 48, 0.55) 100%);
+            background: linear-gradient(125deg, rgba(12, 30, 48, 0.88) 0%, rgba(22, 50, 77, 0.72) 55%, rgba(12, 30, 48, 0.5) 100%);
         }
 
         .hero-inner {
@@ -165,8 +240,9 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background-color: rgba(217, 130, 43, 0.18);
-            border: 1px solid rgba(245, 158, 11, 0.5);
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
             color: #fbbf24;
             padding: 6px 16px;
             border-radius: 30px;
@@ -174,10 +250,10 @@
             font-weight: 500;
             margin-bottom: 22px;
             letter-spacing: 1.5px;
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
         }
 
-        /* 優化後的主標題字體：字距更舒展、兩行對稱平衡 */
         .hero-carousel h1 {
             font-size: 2.65rem;
             font-weight: 700;
@@ -188,7 +264,6 @@
             text-shadow: 0 2px 14px rgba(0, 0, 0, 0.3);
         }
 
-        /* 優化後的副標題字體：輕盈細緻、閱讀寬度適中 */
         .hero-carousel p {
             font-size: 1.05rem;
             font-weight: 300;
@@ -205,59 +280,18 @@
             flex-wrap: wrap;
         }
 
-        .btn-primary {
-            background-color: #d9822b;
-            color: #ffffff;
-            text-decoration: none;
-            padding: 13px 28px;
-            border-radius: 30px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            transition: background-color 0.3s, transform 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary:hover {
-            background-color: #b86b1e;
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background-color: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            color: #ffffff;
-            text-decoration: none;
-            padding: 13px 28px;
-            border-radius: 30px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            backdrop-filter: blur(4px);
-        }
-
-        .btn-outline:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        /* 左右切換箭頭按鈕 */
+        /* 左右玻璃切換箭頭按鈕 */
         .carousel-arrow {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             z-index: 4;
-            background: rgba(15, 37, 55, 0.45);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.45);
             color: #ffffff;
-            width: 44px;
-            height: 44px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
             cursor: pointer;
             font-size: 1.1rem;
@@ -265,12 +299,14 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
         }
 
         .carousel-arrow:hover {
-            background: #d9822b;
-            border-color: #d9822b;
+            background: linear-gradient(135deg, rgba(235, 148, 54, 0.8) 0%, rgba(205, 114, 24, 0.65) 100%);
+            border-color: rgba(255, 255, 255, 0.7);
+            transform: translateY(-50%) scale(1.06);
         }
 
         .carousel-prev { left: 20px; }
@@ -285,20 +321,25 @@
             z-index: 4;
             display: flex;
             gap: 10px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(15, 37, 55, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
         }
 
         .carousel-dot {
-            width: 11px;
-            height: 11px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.35);
+            background: rgba(255, 255, 255, 0.4);
             border: none;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .carousel-dot.active {
-            width: 28px;
+            width: 26px;
             border-radius: 10px;
             background: #f59e0b;
         }
@@ -315,8 +356,8 @@
                 display: none;
             }
             .carousel-arrow {
-                width: 36px;
-                height: 36px;
+                width: 38px;
+                height: 38px;
                 font-size: 0.95rem;
             }
             .carousel-prev { left: 10px; }
@@ -521,7 +562,9 @@
             position: absolute;
             bottom: 12px;
             left: 12px;
-            background: rgba(15, 37, 55, 0.85);
+            background: rgba(15, 37, 55, 0.72);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
             color: #ffffff;
             padding: 5px 14px;
             border-radius: 20px;
@@ -594,23 +637,24 @@
                     <li><a href="#features">本系特色</a></li>
                     <li><a href="#curriculum">課程規劃</a></li>
                     <li><a href="#contact">聯絡我們</a></li>
-                    <li><a href="studentworks.html" class="nav-btn-works"><i class="fas fa-images"></i> 學生作品</a></li>
+                    <li><a href="studentworks.html" class="glass-btn glass-btn-frosted nav-btn-works"><i class="fas fa-images"></i> 學生作品</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- 主視覺 Hero Image + Carousel 輪播區 -->
+    <!-- 主視覺 Hero Image + Carousel 輪播區（包含系辦 2.JPG、5.jpg 與 4.JPG） -->
     <div class="hero-carousel" id="heroCarousel">
         <!-- 輪播照片清單（日後新增照片只需在這裡複製貼上一行即可） -->
         <div class="hero-slides">
             <div class="hero-slide active" style="background-image: url('graph/2.JPG');"></div>
             <div class="hero-slide" style="background-image: url('graph/5.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('graph/4.JPG');"></div>
         </div>
 
         <div class="hero-overlay"></div>
 
-        <!-- 左右切換箭頭 -->
+        <!-- 左右毛玻璃切換箭頭 -->
         <button class="carousel-arrow carousel-prev" onclick="moveHeroSlide(-1)" aria-label="上一張照片">
             <i class="fas fa-chevron-left"></i>
         </button>
@@ -618,14 +662,14 @@
             <i class="fas fa-chevron-right"></i>
         </button>
 
-        <!-- 前景核心標語與按鈕（已優化兩行對稱字體排版） -->
+        <!-- 前景核心標語與 iPhone 玻璃質感按鈕 -->
         <div class="hero-inner">
             <span class="hero-badge"><i class="fas fa-compass"></i> 慈濟大學經營管理學系</span>
             <h1>培育具社會責任、國際視野<br>與創新思維之商管人才</h1>
             <p>結合實務個案教學、智慧零售實習場域、企業永續發展（ESG）與國際交流，為您打造接軌全球商業舞台的關鍵競爭力。</p>
             <div class="hero-actions">
-                <a href="#about" class="btn-primary">探索本系 <i class="fas fa-arrow-down"></i></a>
-                <a href="studentworks.html" class="btn-outline"><i class="fas fa-images"></i> 瀏覽學生作品展</a>
+                <a href="#about" class="glass-btn glass-btn-amber">探索本系 <i class="fas fa-arrow-down"></i></a>
+                <a href="studentworks.html" class="glass-btn glass-btn-frosted"><i class="fas fa-images"></i> 瀏覽學生作品展</a>
             </div>
         </div>
 
@@ -646,7 +690,7 @@
                     <p>慈濟大學經營管理學系宗旨在於「培育兼具商業管理專業知能與慈濟大愛人文素養之經營管理人才」。因應人工智慧時代與全球 ESG 永續經營趨勢，我們規劃具前瞻性的創新管理課程。</p>
                     <p>本系強調「學用合一」，建置完善的特色實務教室（如知足咖啡館與智慧商店），積極推動企業個案教學與多元產學實習，輔導學生順暢接軌產業。</p>
                     <br>
-                    <a href="studentworks.html" class="btn-primary">觀看學生實務專題成果 <i class="fas fa-arrow-right"></i></a>
+                    <a href="studentworks.html" class="glass-btn glass-btn-amber">觀看學生實務專題成果 <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="timeline-box">
                     <h3><i class="fas fa-history" style="color:#d9822b;"></i> 本系發展沿革</h3>
