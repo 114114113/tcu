@@ -39,8 +39,19 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        .serif-en {
-            font-family: 'Cormorant Garamond', Georgia, serif;
+        /* =========================================
+           優雅捲動淡入動畫 (Scroll Reveal)
+           ========================================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* =========================================
@@ -64,7 +75,6 @@
             cursor: pointer;
         }
 
-        /* 香檳金極致透明玻璃按鈕（主按鈕） */
         .glass-btn-gold {
             background: linear-gradient(135deg, rgba(197, 160, 89, 0.22) 0%, rgba(197, 160, 89, 0.05) 100%);
             border: 1px solid rgba(223, 195, 136, 0.65);
@@ -83,7 +93,6 @@
                         inset 0 1px 0 rgba(255, 255, 255, 0.85);
         }
 
-        /* 純淨晶透極致透明玻璃按鈕（次按鈕） */
         .glass-btn-frosted {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%);
             border: 1px solid rgba(255, 255, 255, 0.45);
@@ -101,7 +110,6 @@
                         inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
 
-        /* 象牙暖白底區塊專用玻璃按鈕 */
         .glass-btn-light {
             background: linear-gradient(135deg, rgba(197, 160, 89, 0.14) 0%, rgba(197, 160, 89, 0.03) 100%);
             border: 1px solid rgba(197, 160, 89, 0.55);
@@ -234,7 +242,6 @@
             transform: scale(1);
         }
 
-        /* 左下深邃、右上清透的電影感遮罩 */
         .hero-overlay {
             position: absolute;
             inset: 0;
@@ -296,7 +303,6 @@
             flex-wrap: wrap;
         }
 
-        /* 左右極致透明玻璃切換箭頭 */
         .carousel-arrow {
             position: absolute;
             top: 50%;
@@ -328,7 +334,6 @@
         .carousel-prev { left: 26px; }
         .carousel-next { right: 26px; }
 
-        /* 底部圓點指示器 */
         .carousel-dots {
             position: absolute;
             bottom: 32px;
@@ -454,7 +459,7 @@
             .carousel-next { right: 10px; }
         }
 
-        /* 通用區塊容器（增加留白呼吸感） */
+        /* 通用區塊容器 */
         section {
             padding: 88px 20px;
         }
@@ -579,7 +584,7 @@
             color: var(--text-secondary);
         }
 
-        /* 四大特色與三大課程網格（去框線純白微陰影卡片） */
+        /* 四大特色與三大課程網格 */
         .bg-white {
             background-color: #FFFFFF;
         }
@@ -658,6 +663,116 @@
             color: var(--text-secondary);
             font-size: 0.93rem;
             line-height: 1.75;
+        }
+
+        /* =========================================
+           大一至大四修課進階地圖互動分頁 (Curriculum Roadmap)
+           ========================================= */
+        .roadmap-box {
+            margin-top: 48px;
+            background: var(--card-bg);
+            border-radius: 18px;
+            padding: 36px;
+            box-shadow: 0 20px 45px rgba(11, 22, 34, 0.045);
+        }
+
+        .roadmap-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(11, 22, 34, 0.07);
+        }
+
+        .roadmap-header h3 {
+            font-size: 1.25rem;
+            color: var(--midnight);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .roadmap-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .roadmap-tab {
+            background: var(--ivory-bg);
+            border: 1px solid rgba(11, 22, 34, 0.08);
+            color: var(--text-secondary);
+            padding: 8px 20px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .roadmap-tab:hover {
+            border-color: var(--champagne);
+            color: var(--midnight);
+        }
+
+        .roadmap-tab.active {
+            background: var(--midnight);
+            border-color: var(--midnight);
+            color: var(--champagne-light);
+            box-shadow: 0 6px 16px rgba(11, 22, 34, 0.18);
+        }
+
+        .roadmap-panel {
+            display: none;
+            animation: fadeUp 0.4s ease;
+        }
+
+        .roadmap-panel.active {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .roadmap-panel.active {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .roadmap-focus h4 {
+            font-size: 1.18rem;
+            color: var(--midnight);
+            margin-bottom: 8px;
+        }
+
+        .roadmap-focus p {
+            font-size: 0.94rem;
+            color: var(--text-secondary);
+        }
+
+        .roadmap-courses {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .course-pill {
+            background: var(--ivory-bg);
+            border-left: 3px solid var(--champagne);
+            color: var(--midnight);
+            padding: 9px 16px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 500;
         }
 
         /* =========================================
@@ -795,6 +910,45 @@
             letter-spacing: 0.5px;
         }
 
+        /* 浮動極致透明玻璃「回到頂部」按鈕 */
+        .back-to-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 99;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(11, 22, 34, 0.72) 0%, rgba(11, 22, 34, 0.45) 100%);
+            border: 1px solid rgba(197, 160, 89, 0.6);
+            box-shadow: 0 8px 24px rgba(11, 22, 34, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            color: var(--champagne-light);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(15px);
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: var(--midnight);
+            border-color: #ffffff;
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
         /* 頁尾 */
         footer {
             background-color: #070E16;
@@ -906,7 +1060,7 @@
     </div>
 
     <!-- 數據亮點列（已往下移至滿版主視覺下方） -->
-    <div class="stats-wrapper">
+    <div class="stats-wrapper reveal">
         <div class="stats-bar">
             <div class="stat-item">
                 <div class="stat-num"><i class="fas fa-trophy"></i> 全國競賽獲獎</div>
@@ -928,7 +1082,7 @@
     </div>
 
     <!-- 系所簡介與沿革 -->
-    <section id="about">
+    <section id="about" class="reveal">
         <div class="container">
             <div class="section-header">
                 <span>ABOUT THE DEPARTMENT</span>
@@ -966,7 +1120,7 @@
     </section>
 
     <!-- 本系四大特色 -->
-    <section id="features" class="bg-white">
+    <section id="features" class="bg-white reveal">
         <div class="container">
             <div class="section-header">
                 <span>CORE ADVANTAGES</span>
@@ -998,8 +1152,8 @@
         </div>
     </section>
 
-    <!-- 專業課程規劃 -->
-    <section id="curriculum">
+    <!-- 專業課程規劃與修課地圖 -->
+    <section id="curriculum" class="reveal">
         <div class="container">
             <div class="section-header">
                 <span>CURRICULUM MODULES</span>
@@ -1023,11 +1177,79 @@
                     <p>培養生成式 AI 輔助決策、顧客旅程數位化、商業模式創新與專題競賽實戰力。</p>
                 </div>
             </div>
+
+            <!-- 互動式修課進階地圖 -->
+            <div class="roadmap-box">
+                <div class="roadmap-header">
+                    <h3><i class="fas fa-route" style="color:var(--champagne);"></i> 四年一貫學習進階地圖</h3>
+                    <div class="roadmap-tabs">
+                        <button class="roadmap-tab active" onclick="switchYear(0, this)">大一．商業基石</button>
+                        <button class="roadmap-tab" onclick="switchYear(1, this)">大二．專業深化</button>
+                        <button class="roadmap-tab" onclick="switchYear(2, this)">大三．場域實作</button>
+                        <button class="roadmap-tab" onclick="switchYear(3, this)">大四．職場接軌</button>
+                    </div>
+                </div>
+
+                <div class="roadmap-panel active">
+                    <div class="roadmap-focus">
+                        <h4>建立管理思維與數位工具基礎</h4>
+                        <p>紮根經濟、會計與管理學核心概念，並導入生成式 AI 與商業文書數據分析基礎。</p>
+                    </div>
+                    <div class="roadmap-courses">
+                        <span class="course-pill">管理學原理</span>
+                        <span class="course-pill">經濟學與商業環境</span>
+                        <span class="course-pill">初級會計學</span>
+                        <span class="course-pill">生成式 AI 商業應用入門</span>
+                        <span class="course-pill">企業倫理與人文素養</span>
+                    </div>
+                </div>
+
+                <div class="roadmap-panel">
+                    <div class="roadmap-focus">
+                        <h4>五大管領域與體驗設計方法論</h4>
+                        <p>系統化學習行銷、財務、營運與人力資源管理，並結合顧客旅程與服務設計實務。</p>
+                    </div>
+                    <div class="roadmap-courses">
+                        <span class="course-pill">行銷管理與消費者行為</span>
+                        <span class="course-pill">財務管理實務</span>
+                        <span class="course-pill">服務業管理與體驗設計</span>
+                        <span class="course-pill">作業與供應鏈管理</span>
+                        <span class="course-pill">商業統計與數據分析</span>
+                    </div>
+                </div>
+
+                <div class="roadmap-panel">
+                    <div class="roadmap-focus">
+                        <h4>地方創生走讀、競賽與跨域技能</h4>
+                        <p>走入花蓮在地社區進行田野企劃，參與全國經營管理專題競賽及餐飲烘焙技能考照。</p>
+                    </div>
+                    <div class="roadmap-courses">
+                        <span class="course-pill">地方創生與品牌實作</span>
+                        <span class="course-pill">ESG 永續經營與淨零碳經濟</span>
+                        <span class="course-pill">創業管理與商業模式設計</span>
+                        <span class="course-pill">咖啡與烘焙服務實務</span>
+                        <span class="course-pill">經營管理實務專題（一）</span>
+                    </div>
+                </div>
+
+                <div class="roadmap-panel">
+                    <div class="roadmap-focus">
+                        <h4>海內外企業實習與畢業專題發表</h4>
+                        <p>申請教育部學海築夢美日海外實習或國內知名企業實習，完成畢業專題無縫銜接就業與升學。</p>
+                    </div>
+                    <div class="roadmap-courses">
+                        <span class="course-pill">學海築夢海外企業實習</span>
+                        <span class="course-pill">國內產學合作全學期實習</span>
+                        <span class="course-pill">策略管理與高階個案研討</span>
+                        <span class="course-pill">經營管理實務專題（二）</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- 近期榮譽與升學實績 -->
-    <section id="honors" class="honors-section">
+    <section id="honors" class="honors-section reveal">
         <div class="container">
             <div class="section-header">
                 <span>HONORS & ACHIEVEMENTS</span>
@@ -1055,7 +1277,7 @@
     </section>
 
     <!-- 聯絡我們（右側展示系辦照片 graph/2.JPG） -->
-    <section id="contact" class="bg-white">
+    <section id="contact" class="bg-white reveal">
         <div class="container">
             <div class="section-header">
                 <span>CONTACT US</span>
@@ -1079,6 +1301,11 @@
             </div>
         </div>
     </section>
+
+    <!-- 浮動極致透明玻璃「回到頂部」按鈕 -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="回到頁面頂部">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <!-- 頁尾 -->
     <footer>
@@ -1110,8 +1337,9 @@
         </div>
     </footer>
 
-    <!-- Hero Carousel 自動輪播與指示圓點控制腳本 -->
+    <!-- 互動腳本：輪播、修課地圖切換、捲動淡入與回到頂部 -->
     <script>
+        // 1. Hero Carousel 控制
         const heroSlides = document.querySelectorAll('.hero-slide');
         const dotsContainer = document.getElementById('heroDots');
         let heroIndex = 0;
@@ -1162,6 +1390,43 @@
         }
 
         startHeroTimer();
+
+        // 2. 四年一貫修課地圖分頁切換
+        function switchYear(index, btn) {
+            document.querySelectorAll('.roadmap-tab').forEach(tab => tab.classList.remove('active'));
+            btn.classList.add('active');
+
+            document.querySelectorAll('.roadmap-panel').forEach((panel, idx) => {
+                panel.classList.toggle('active', idx === index);
+            });
+        }
+
+        // 3. 優雅捲動淡入動畫 (IntersectionObserver)
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // 4. 浮動回到頂部按鈕顯示與點擊
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 450) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     </script>
 
 </body>
